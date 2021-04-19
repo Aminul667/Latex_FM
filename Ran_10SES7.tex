@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \section*{MTH6141 Random Processes, 2013-14\\Solutions to Exercise Sheet 7}
+    %
+    \begin{enumerate}
+        \item
+        \begin{enumerate}
+            \item The varification of P1 are as in Q1. For P2 observe that $X(s+t)-X(s)$ is distributed $\text{Po}(\lambda t)$, so by Question 1(c) from the previous sheet, $\widehat{X}(s+t)-\widehat{X}(s)$ is distributed $\text{Po}(p\lambda t)$ 
+            \item The arrivals of all trains is a Poisson process of rate $\lambda = \frac{1}{3}$ per minute. Thus the arrivals of Hammersmith and City Line trains is a Poisson process of rate $p\lambda = \frac{3}{10}\times \frac{1}{3} = \frac{1}{10}$ per minute. Yhe waiting time is $\text{Exp}(\frac{1}{10})$, so the expected wait is $10$ minutes. After $10$ minutes, the expected further waiting time is still $10$ minutes.
+        \end{enumerate}
+        \item a
+        \begin{enumerate}
+            \item Under assumption (i) the fact that I arrive at a random time means that the time I wait (in minutes) is a random variable uniformly distributed on $[0, 10]$. Such an rev. has expectation $5$. So I expect to wait $5$ minutes. Under assumption (ii) we have that, by the lack of memory of the Poisson process, the buses arrive as a Poisson process (even given that I arrive at a random time). The time I wait is $T_1$ (or $S_1$) for the process starting from when I arrive. So (in minutes) the waiting time is an $\text{Exp}(6/60) = \text{Exp}(1/10)$ random variable. The expectation of this r.v is $10$. So I can expect to wait $10$ minutes.
+            \item This result appears paradoxical since in both cases the average interval between buses is $10$ minutes. Intuitively the average time I wait should be half this. This argument is correct in case (i). However in the Poisson process case I am more likely to arrive during a long interval between buses (because the long intervals take up more time) and so the average time I wait is longer.
+        \end{enumerate}
+        \item Applying the same calculation for general $n \geq 1$:
+        \begin{align*}
+            F_{T_n}(t)
+            &= \mathbb{P}(X(t) \geq n)\\
+            &= 1- \mathbb{P}(X(t)=0)-\mathbb{P}(X(t)=1)-\cdots - \mathbb{P}(X(t)=n-1)\\
+            &= 1- \left(1+\lambda t+\frac{(\lambda t)^2}{2!}+\cdots +\frac{(\lambda t)^{n-2}}{(n-2)!}+\frac{(\lambda t)^{n-1}}{(n-1)!}\right)e^{-\lambda t}.
+        \end{align*}
+        Differentiating,
+        \begin{align*}
+            f_{T_n}(t)
+            &= -\left(\lambda + \lambda^2t+\cdots+\frac{\lambda^{n-2}t^{n-3}}{(n-3)!}+\frac{\lambda^{n-1}t^{n-2}}{(n-2)!}\right)e^{-\lambda t}\notag \\
+            & \quad \quad + \left(1 + \lambda t + \frac{(\lambda^2t)}{2!}+\cdots+\frac{(\lambda t)^{n-2}}{(n-2)!}+\frac{(\lambda t)^{n-1}}{(n-1)!}\right)\lambda e^{-\lambda t}\\
+            &= \frac{\lambda^nt^{n-1}}{(n-1)!}e^{-\lambda t}
+        \end{align*}
+        (Notice how all the terms bar one cancel out in pairs.)
+        \item Let $A(t)$ (respectively $B(t))$ be the Poisson process describing goals scored by Athletic (respectively, Borough).
+        \begin{enumerate}
+            \item The required probability is
+            \begin{align*}
+                &\mathbb{P}(A(\tfrac{3}{2})= 3, B(\tfrac{3}{2}) = 3\, | \, A(\tfrac{3}{4}) = 2, B(\tfrac{3}{4})=1)\\
+                &  \qquad = \mathbb{P}(A(\tfrac{3}{2}) = 3,\ | \, A(\tfrac{3}{4}) = 2)\mathbb{P}(B(\tfrac{3}{2}) = 3\, | \, B(\tfrac{3}{4})=1)\\
+                & \qquad \qquad \qquad (A(t)\ \text{and}\ B(t)\ \text{are independent})\\
+                &  \qquad = \mathbb{P}(A(\tfrac{3}{2})-A(\tfrac{3}{4})=1)\mathbb{P}(B(\tfrac{3}{2})-B(\tfrac{3}{4})=2)\\
+                & \qquad \tfrac{(3/4)^1}{1!}e^{-3/4} \times \tfrac{(3/2)^2}{2!}e^{-3/2}\\
+                & \qquad = \tfrac{27}{32}e^{-9/4},
+            \end{align*}
+            where we have used the hour as the unit of time.
+            \item The half-time tally of goals from either team is distributed $\text{Bin}(3,\tfrac{1}{2})$, independently of the other team. So
+            $$
+            \mathbb{P}(A(\tfrac{3}{4})=2,B(\tfrac{3}{4}) = 1\, | \, A(\tfrac{3}{2}) = 3, B(\tfrac{3}{2})=3)
+            =
+            \tbinom{3}{2}(\tfrac{1}{2})^3\tbinom{3}{1}(\tfrac{1}{2})^3
+            =
+            \tfrac{9}{64}.
+            $$
+            \item There are six possible half-time scores with Athletic ahead: $1-0, 2-0, 3-0, 2-1, 3-1$, and $3-2$. Adding up the probabilities of these six disjoint events (each of which may be calculated as above) yields
+            \begin{align*}
+                & \mathbb{P}(A(\tfrac{3}{4}) > B(\tfrac{3}{4})\, | \, A(\tfrac{3}{2})=3, B(\tfrac{3}{4})=3)\\
+                & \qquad = \left[\tbinom{3}{1}\tbinom{3}{0}+ \tbinom{3}{2}\tbinom{3}{0}+\tbinom{3}{3}\tbinom{3}{0}+\tbinom{3}{2}\tbinom{3}{1}+\tbinom{3}{3}\tbinom{3}{1}+\tbinom{3}{3}\tbinom{3}{2}\right](\tfrac{1}{2})^6\\
+                & \qquad = [3+3+1+9+3+3]\tfrac{1}{64}\\
+                & \qquad = \tfrac{11}{32}.
+            \end{align*}
+        \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item As usual with continuous random variablæ (and as the hint sugsts), the cdf is easier to work out than the pdf.
+            \begin{align*}
+                F_{T_1|X(t)=n}(u) 
+                &= \mathbb{P}(T_1 \leq u\, | \, X(t)=n)\\
+                &= 1- \mathbb{P}(T_1>u\, | \,X(t) = n)\\
+                &= 1- \mathbb{P}(X(u)=0\, | \, X(t) = n)\\
+                &= 1-\left(1-\frac{u}{t}\right)^n
+            \end{align*}
+            for $0 < u t$, since the conditional distribution of $X(u)$, gitæn $X(t) = n$, is $\text{Bin}(n,\tfrac{u}{t})$, by Theorem 2.6 (Alternatively, apply Bayes' Theorem.)\\
+            Differentiating this with respect to $u$ gives the pdf:
+            $$
+            f_{T_1|X(t)=n}(u) = \frac{n}{t}\left(1-\frac{u}{t}\right)^{n-1}
+            $$
+            for $0<u\leq t$.
+            \item The expectation can be found in the usual way:
+            \begin{align*}
+                \mathbb{E}(T_1\,|\,X(t)=n)
+                &= \int_0^t\, x\frac{n}{t}\left(1-\frac{x}{t}\right)^{n-1}\, dx\\
+                &= \left[-x\left(1-\frac{x}{t}\right)^n\right]_{x=0}^{x=t}+\int_0^t\, \left(1-\frac{x}{t}\right)^n\, dx\quad \text{(integrating by parts)}\\
+                &= 0-\left[\frac{t}{n+1}\left(1-\frac{x}{t}\right)^{n+1}\right]_{x=0}^{x=t}\\
+                &= \frac{t}{n+1}.
+            \end{align*}
+            Alternatively (and slicker!), use the fact that $\mathbb{E}(T_1|X(t)=n)=\int_0^t[1-F_{T_1|X(t)=n}(u)]$ $du$.
+            %
+            \item We apply the Law of Total Expectation, noting that the events $X (t) = n$, for $n = 1,2,\ldots,$ partition the probability space:
+            \begingroup
+            \allowdisplaybreaks
+            \begin{align*}
+                \mathbb{E}(T_1\,|\, X(t)\geq 1)
+                &= \sum_{n=1}^\infty \mathbb{P}(X(t)=n\,|\, X(t)\geq 1)\mathbb{E}(T_1\,|\, X(t)=n)\\
+                &= \sum_{n=1}^\infty \frac{\mathbb{P}(X(t)=n)}{\mathbb{P}(X(t)\geq 1)}\mathbb{E}(T_1\,|\, X(t)=n)\\
+                &= \sum_{n=1}^\infty \frac{(\lambda t)^ne^{-\lambda t}}{n!(1-e^{-\lambda t})}\times \frac{t}{n+1}\\
+                &= \frac{te^{-\lambda t}}{1-e^{-\lambda t}}\sum_{n=1}^\infty \frac{(\lambda t)^n}{(n+1)!}\\
+                &= \frac{te^{-\lambda t}}{\lambda t(1-e^{-\lambda t})}\sum_{n=1}^\infty \frac{(\lambda t)^{n+1}}{(n+1)!}\\
+                &= \frac{te^{-\lambda t}}{\lambda t(1-e^{-\lambda t})}\left(e^{\lambda t}-\lambda t -1\right)\\
+                &= \frac{1}{\lambda}\times \frac{e^{\lambda t}-\lambda t -1}{e^{\lambda t}-1}.
+            \end{align*}
+            \endgroup
+            How reasonable is this answer? The first factor is the unconditioned expectation ofthe first arrival time. The second modifying factor takes a value in $(0, 1)$. This seems reasonable, since conditioning on some arrival in $(0, t]$ presumably makes an early arrival more likely. As $\lambda \to \infty$, the modifying factor tends to 1, which corresponds to our intuition that the conditioning has less effect as the rate $\lambda$ increases. Finally, the answer tends to $\tfrac{1}{2}t$ as $\lambda \to 0$: we are forcing an arrival in the interval $(0, t]$, and that arrival is (almost) uniformly distributed in $(0, t]$. 
+        \end{enumerate}
+
+        
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,63 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 10
+    \end{center}
+    %
+    Please hand in your solution of the \textbf{starred} exercises by \textbf{17.00 on Wednesday 14 December 2016} using the green Introduction to Mathematical Finance Collection Box on the second floor of the Mathematics Building. Don’t forget to put your \textbf{name} (with your \underline{surname} underlined), \textbf{student number} and your \textbf{tutorial group} on your solutions, and to \textbf{staple} them.\par 
+    %
+    \textbf{Exercise 1.} Let a return function be defined by $r_(1) = 1, r_1(2) = 1, r_1(3) = −1, r_2(1) = −2, r_2(2) = −1,\ \text{and}\ r2(3) = 4$. Use the Arbitrage Theorem to show that there exists a betting strategy $x = (x_1, x_2)$ giving a guaranteed risk free profit.\par 
+    %
+    \textbf{Exercise* 2.} Suppose that the odds of $m$ possible outcomes of an experiment are $o_i > 0$, where $i = 1,\ldots , m$. In other words, the return function is given by
+    $$
+    r_i(j)
+    =
+    \begin{cases}
+        o_i & \text{if $j=i$};\\
+        -1 & \text{if $j \neq i$}.
+    \end{cases}
+    $$
+    Use the Arbitrage Theorem to show that either
+    $$
+    \sum_{i=1}^m(1+o_i)^{-1}=1,
+    $$
+    or there is an arbitrage opportunity.\par 
+    %
+    \textbf{Exercise 3.} Assume that the interest rate is $r = 2\%$ per time period. Suppose that at time $0$, Vodafone stock price is traded at $\pounds 217$, and that at the next time period $1$, it is either traded at $\pounds 205$ or $\pounds 228$. We consider a European call option with maturity time period $1$ and strike price $\pounds 220$. What is the no-arbitrage price $C$ of the call option?\par 
+    %
+    \textbf{Exercise* 4.} Suppose that interest is compounded at nominal rate $r$ per time period. Consider a share with starting value $S(0) = S$ which can take on only two possible values at the next time period $t = 1$, either $S(1) = S_u$ or $S(1) = S_d$, for some values $S_d < S_u$.
+    \begin{enumerate}[(a)]
+        \item Explain why the relation
+        \begin{equation}
+            S_d \leq (1+r)S \leq S_u.
+        \end{equation}
+        is necessary in order for the market to allow for no-arbitrage opportunities. That is,show that there exists an arbitrage opportunity in the cases when this relation is violated, namely when either $(1 + r)S < S_d$ or $S_u < (1 + r)S$ holds.
+        \item Derive a general formula for the price $C$ of a call option with strike price $K$ and expiration time $T = 1$ assuming that $S_d < K < S_u$.\\
+        \underline{Hint:} \textsl{Use the Arbitrage Theorem}.
+    \end{enumerate}
+\end{document}

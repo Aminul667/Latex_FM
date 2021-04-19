@@ -1,0 +1,202 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \section*{MTH6141 Random Processes, 2014-15\\Solutions to Exercise Sheet 8}
+    %
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item The "bare hands" approach is as follows, For any $k\in \mathbb{N}$,
+            \begin{align*}
+                \text{Prob}(A+B=k)
+                &= \sum_{i=0}^k \text{Prob}(A=i)\, \text{Prob}(B=k-i)\\
+                &= \sum_{i=0}^k \frac{\lambda^i}{i!}e^{-\lambda}\frac{\mu^{k-i}}{(k-i)!}e^{-\mu}\\
+                &= \frac{1}{k!}e^{-(\lambda+\mu)}\sum_{i=0}^k \binom{k}{i}\lambda^i\mu^{k-i}\\
+                &= \frac{(\lambda+\mu)^k}{k!}e^{-(\lambda + \mu)}.
+            \end{align*}
+            So $A+B\sim \text{Po}(\lambda + \mu)$.(An alternative, more elegant approach is via probability generating functions: see \textit{Probability Models}.)
+            %
+            \item 
+            \begin{align*}
+                \mathbb{E}[A]
+                &= \sum_{n=0}^\infty ne^{-\lambda}\frac{\lambda^n}{n!}\\
+                &= \lambda e^{-\lambda}\sum_{n=1}^\infty \frac{\lambda^{n-1}}{(n-1)!}\\
+                &= \lambda e^{-\lambda}\sum_{m=0}^\infty \frac{\lambda^m}{m!}\\
+                &= \lambda e^{-\lambda}e^\lambda\\
+                &= \lambda.
+            \end{align*}
+            %
+            \item The cdf of the $\text{Exp}(\lambda)$ distribution is $F(t) = 1 - e^{-\lambda t}$. Thus, if $T \sim \text{Exp}(\lambda)$ then $\text{Prob}(T>t) = e^{-\lambda t}$. The claim follows from the following chain of equalities:
+            \begin{align*}
+                \text{Prob}(T > s+t\,|\, T>s)
+                &= \frac{\text{Prob}(T>s+t, T>s)}{\mathbb{P}(T>s)}\\
+                &= \frac{\text{Prob}(T>s+t)}{\mathbb{P}(T>s)}\\
+                &= e^{-\lambda(s+t)}/e^{-\lambda s}\\
+                &= e^{-\lambda t}\\
+                &= \text{Prob}(T>s).
+            \end{align*}
+            %
+            \item Using integration by parts with $u=t,\ dv/dt = \lambda e^{-\lambda t}, du/dt = 1$, we get 
+            \begin{align*}
+                \mathbb{E}[T]
+                &= \int_0^\infty\, t\lambda e^{-\lambda t}\, dt\\
+                &= [-te^{-\lambda t}]_0^\infty + \int_0^\infty\, e^{-\lambda t}\, dt\\
+                &= 0-[\tfrac{1}{\lambda}e^{-\lambda t}]_0^\infty\\
+                &= \tfrac{1}{\lambda}.
+            \end{align*}
+            %
+            \item Suppose $X(t)\sim \text{Po}(\lambda)$. Then
+            \begin{align*}
+                \text{Prob}(Y(t)=k)
+                &= \sum_{i=0}^\infty \mathbb{P}(X(t)=k+i)\mathbb{P}(Y(t)=k\,|\, X(t)=k+i)\\
+                &= \sum_{i=0}^\infty \frac{\lambda^{k+i}}{(k+i)!}e^{-\lambda}\binom{k+i}{k}(1-p)^kp^i\\
+                &= \sum_{i=0}^\infty \frac{\lambda^k \lambda^i}{k!i!}e^{-\lambda}(1-p)^kp^i\\
+                &= \frac{((1-p)\lambda)^k}{k!}e^{-\lambda}\sum_{i=0}^\infty \frac{(p\lambda)^i}{i!}\\
+                &= \frac{((1-p)\lambda)^k}{k!}e^{-(1-p)\lambda}.
+            \end{align*}
+            So $Y(t)\sim \text{Po}((1-p)\lambda)$. (Alternatively, this question makes an attractive exercise in the use of probability generating functions! See \textit{Probability Models}.)
+        \end{enumerate}
+        \item For any $t > 0,\ \text{Prob}(T_1>t) = \text{Prob}(X(t)=0)=e^{-\lambda t}$ (since $X(t)\sim \text{Po}(\lambda t)$), and therefore the random variable $T_1$ has cumulative distribution function
+        $$
+        F_{T_1}
+        =
+        \begin{cases}
+            1-e^{-\lambda t} & \text{if}\ t \geq 0;\\
+            0 & \text{if}\ t<0.
+        \end{cases}
+        $$
+        Therefore, $T_1$ has the exponential distribution with parameter $\lambda$.
+        %
+        \item Let $0$ be the time when I arrive. Let $X(t)$ denote the number of buses that arrive between time $0$ and time $t$ minutes. Then $(X(t) : t \geq 0$ is a Poisson process with rate $2/15$.
+        \begin{enumerate}
+            \item My 'waiting time' is the same as the first arrival time, $T_1$. we are asked to find $\text{Prob}(T_1 < 5)$. Since $T_1$ is a continuous random variable, we have
+            $$
+            \text{Prob}(T_1<5) = \text{Prob}(T_1 \leq 5).
+            $$
+            [For any continuous random variable $T$ and any real number $t$, we have $\text{Prob}(T=1)=0$, so $\text{Prob}(T \leq t) = \text{Prob}(T < t)+ \text{Prob}(T = t)= \text{Prob}(T < t)$.]\\
+            We have
+            \begin{align*}
+                \text{Prob}(T_1<5)
+                &= \text{Prob}(T_1 \leq 5)\\
+                &= \text{Prob}(X(5)\geq 1)\\
+                &= 1- \text{Prob}(X(5)=0)\\
+                &= 1- e^{-5\lambda}\\
+                &= 1-e^{-2/3}.
+            \end{align*}
+            %
+            \item The event that my waiting time is between $5$ and $10$ minutes is the event that $5 \leq T_1 \leq 10$, and the probability of this is
+            \begin{align*}
+                \text{Prob}(5 \leq T_1 \leq 10)
+                &= \text{Prob}(T_1 \leq 10) - \text{Prob}(T_1 < 5)\\
+                &= \text{Prob}(T_1 \leq 10) - \text{Prob}(T_1 \leq 5)\\
+                &= \text{Prob}(X(10) \geq 1) - \text{Prob}(X(5) \geq 1)\\
+                &= (1-e^{-10\lambda}) - (1-e^{-5\lambda})\\
+                &= e^{-5\lambda} - e^{-10\lambda}\\
+                &= e^{-2/3}-e^{-4/3}\\
+                &= e^{-2/3}(1-e^{-2/3}).
+            \end{align*}
+            %
+            \item The event that my waiting time is less than $20$ minutes, given that no buses arrive in the first 10 minutes, is the same as the event that at least one bus arrives between time $10$ minutes and time $20$ minutes, given that no buses arrived in the first $10$ minutes. In other words, it is the event that $X(20)-X(10)\geq 1$, given that $X(10) = 0$. Since $X(20)-X(10)$ is independent of $X(10)$, we have,
+            \begin{align*}
+                \text{Prob}(X(20)-X(10)\geq 1\,|\, X(10)=0)
+                &= \text{Prob}(X(20)-X(10)\geq 1)\\
+                &= 1-\text{Prob}(X(20)-X(10) = 0)\\
+                &= 1-e^{-10\lambda}\\
+                &= 1-e^{-4/3}.
+            \end{align*}
+        \end{enumerate}
+        %
+        \item
+        \begin{enumerate}
+            \item The key point here is that for any $s,\ t$, we have that $C(s+t)-C(s)\sim \text{Po}(t/5)$. Aside from that, we use several times the fact that the number of arrivals in the time interval $(10,20]$ and the number in the interval $(0,10]$ are independent random variables.
+            \begin{enumerate}
+                \item
+                $$
+                \text{Prob}(C(20)=3)=\text{Prob}(C(20)-C(0)=3)=\frac{4^3}{3!}e^{-4}=\frac{32}{3}e^{-4}
+                $$
+                \item 
+                \begin{align*}
+                    \text{Prob}(C(20)=3\,|\, C(10)=1)
+                    &= \text{Prob}(C(20)-C(10)=2\,|\, C(10)-C(0)=1)\\
+                    &= \text{Prob}(C(20)-C(10)=2)\\
+                    &= \frac{2^2}{2!}e^{-2}\\
+                    &= 2e^{-2}.
+                \end{align*}
+                \item 
+                \begin{align*}
+                    \text{Prob}(C(10)=1,C(20)=3)
+                    &= \text{Prob}(C(10)-C(0)=1, C(20)-C(10)=2)\\
+                    &= \text{Prob}(C(10)-C(0)=1)\text{Prob}(C(20)-C(10)=2)\\
+                    &= \frac{2^1}{1!}e^{-2}\times \frac{2^2}{2!}e^{-2}\\
+                    &= 4e^{-4}.
+                \end{align*}
+                \item 
+                $$
+                \text{Prob}(C(20)=1\,|\, C(10)=3) = \text{Prob}(C(20)-C(10)=-2)=0.
+                $$
+                \item 
+                \begin{align*}
+                    \text{Prob}(C(10)=1\,|\, C(20)=3)
+                    &= \frac{\text{Prob}(C(10)=1,C(20)=3)}{\text{Prob}(C(20)=3)}\\
+                    &= \frac{4e^{-4}}{(32/3)e^{-4}}\\
+                    &= \frac{3}{8}.
+                \end{align*}
+                An alternative argument for part v: given that $C(20) = 3$, we know from the 'conditioning' theorem in the lectures that the conditional distribution of $C(10)$ is $\text{Bin}(3,\tfrac{1}{2})$, so 
+                $$
+                \text{Prob}(C(10)=1\,|\, C(20)=3)=\text{Prob}(\text{Bin}(3,\tfrac{1}{2})=1)=\binom{3}{1}(\tfrac{1}{2})^2(\tfrac{1}{2})=\tfrac{3}{8}.
+                $$
+            \end{enumerate}
+            \item The event that the second customer arrives in the first $15$ minutes is the same as the event that $C(15)\geq 2$. Now
+            $$
+            \text{Prob}(C(15)\geq 2) = 1- \text{Prob}(C(15)=0)-\text{Prob}(C(15)=1),
+            $$
+            and $C(15)\sim \text{Po}(15/5)=\text{Po}(3)$. So 
+            $$
+            \text{Prob}(C(15)\geq 2) = 1- e^{-3}-\frac{3^1}{1!}e^{-3}=1-4e^{-3}.
+            $$
+            \item If each customer spends $10$ minutes in the shop then the customers present at time 1 hour are those who entered the shop in the interval $(50,60]$. The number of these has $\text{Po}(10/5)=\text{Po}(2)$ distribution.
+            \item In each minute, the arrivals are distributed $\text{Po}(10/5)$, independently of the arrivals in all other minutes. So, by applying the result in Question 1(a) over and over again (29 times, to be precise), the number of arrivals during the even minutes are distributed as $\text{Po}(30/5)=\text{Po}(6)$.
+        \end{enumerate}
+        %
+        \item 
+        \begin{enumerate}
+            \item See lecture notes.
+            \item PI (property 1 of the definition of the Poisson process) is immediate.\\
+            So to P2. For $s \geq 0,\ t>0$,
+            \begin{align*}
+                Z(s+t)-Z(s)
+                &= (X(s+t)+Y(s+t))-(X(s)+Y(s))\\
+                &= (X(s+t)-X(s))+(Y(s+t)-Y(s)).
+            \end{align*}
+            But $X(s+t)-X(s)\sim \text{Po}(\lambda t)$ and $Y(s+t)-Y(s)\sim \text{Po}(\mu t)$ so, by Question 1(a) from the previous exercise sheet, $Z(s+t)-Z(s)\sim \text{Po}((\lambda+\mu)t)$.\\
+            For P3, since $X(t_2)-X(t_1),\ldots,X(t_n)-X(t_{n-1})$ and $Y(t_2)-Y(t_1),\ldots,Y(t_n)-Y(t_{n-1})$ are mutually independent random variables, so are 
+            $$(X(t_2)-X(t_1))+(Y(t_2)-Y(t_1)),\ldots,(X(t_n)-X(t_{n-1}))+(Y(t_n)-Y(t_{n-1})).$$
+            Rearranging we see that
+            $$Z(t_2)-Z(t_1),\ldots,Z(t_n)-Z(t_{n-1})$$
+            are mutually independent.
+            \item The arrivals of all trains (Hammersmith and City Line trains plus District Line trains) is, by Part (b), a Poisson process of rate $6 + 14 = 20$ per hour, i.e. $\lambda = \tfrac{1}{3}$ per minute. My waiting time (in minutes) is the same as $T_1$, the first arrival time of this process, and so it is distributed as $\text{Exp}(\lambda)$, so the expected waiting time is $\lambda^{-1}=3$ minutes.(See Question I(d).) The number of arrivals in the interval $(5, 10]$ is independen of the number of arrivals in the interval $(0, 5]$, and the number of arrivals in the interval $(5, 10]$ is distributed as $\text{Po}(5\lambda)=\text{Po}(\tfrac{5}{3})$, so the probability there is some arrival in that 5-minute interval is $1-e^{-\tfrac{5}{3}}$
+        \end{enumerate}
+
+    \end{enumerate}
+\end{document}

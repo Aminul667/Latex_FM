@@ -1,0 +1,49 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+
+\begin{document}
+\begin{center}
+	\LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+	Coursework 4
+\end{center}
+Please hand in your solution of the \textbf{starred} exercises by \textbf{17.00 on Wednesday 26 October 2016} using the green Introduction to Mathematical Finance Collection Box on the second floor of the Mathematics Building. Don’t forget to put your \textbf{name} (with your \underline{surname} underlined) and \textbf{student number} and the \textbf{tutorial group} you belong to on your solutions, and to \textbf{staple} them.\par
+\textbf{Exercise 1.} Mrs Jones, working as a financial consultant in an investment company, found that the monthly prices of one bedroom flats in central London are well described by an IID lognormal model with $\mu = 0.02$ and $\sigma^2 = (0.11)^2$. Determine the probability that the price of a one bedroom flat in central London
+\begin{enumerate}[(a)]
+    \item is lower at the end of the first year than right now;
+    \item is higher at the end of 15th month than at the end of 3rd month;
+    \item at least doubles in 5 years’ time.
+\end{enumerate}
+Some of the investment company’s clients are interested also in buying property in Brighton. Mrs Jones found that the monthly prices of one bedroom flats in Brighton are independent than central London and are well described by an IID lognormal model with $\mu = 0.005$ and $\sigma^2 = (0.15)^2$.
+\begin{enumerate}[(d)]
+    \item Determine the probability that a one bedroom flat in Brighton is worth more than one in London in $1$ year’s time, given that right now they both cost the same.
+\end{enumerate}
+\textbf{Exercise 2.} The Central Limit Theorem has a multiplicative analogue, called the \textbf{Multiplicative Central Limit Theorem}, which, roughly speaking, states that the successive geometric means of a sequence of positive, independent and identically distributed random variables approaches a lognormal distribution. The Multiplicative Central Limit Theorem is one of the reasons for the ubiquity of the lognormal distribution in Financial Mathematics. Its precise formulation is as follows.\par
+Let $Y_1, Y_2,\ldots $ be independent identically distributed random variables taking only positive real values and satisfying $\mathbb{E}(\log Y_i) = \mu$ and $\mathbb{V}ar(\log Y_i) = \sigma^2$, where $\mu \in \mathbb{R}$ and $\sigma > 0$. Then $$\lim_{n\to \infty}\mathbb{P}\left(\left(\frac{Y_1Y_2\ldots Y_n}{e^{n\mu}}\right)^{\frac{1}{\sqrt{n}\sigma}}\leq y\right)=F_Y(y)\quad (\forall y>0),$$ where $F_Y$ is the cumulative distribution function of $Y$ with $Y \sim LogNormal(0, 1)$.\\
+Use the Central Limit Theorem to prove the Multiplicative Central Limit Theorem.\par
+\textbf{Exercise 3.} Let $Y_1, Y_2, \ldots$ , $Y_n$ be independent random variables with $Y_i\sim LogNormal(\mu_i, \sigma^2_i)$ and suppose that $a_1, a_2, \ldots , a_n$ are real constants. Show that $$\prod_{i=1}^nY_i^{a_i}\sim LogNormal(m_n, s_n^2) $$
+for appropriate parameters $m_n$ and $s_n$ and give explicit formulae for $m_n$ and $s_n$. Here, $\prod_{i=1}^nY_i^{a_i}$ denotes the product $Y_1^{a_1}Y_2^{a_2}\ldots Y_n^{a_n}$
+
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+
+
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\newenvironment{psmallmatrix}
+  {\left(\begin{smallmatrix}}
+  {\end{smallmatrix}\right)}
+
+\begin{document}
+    \large{\textbf{MTH6141 Random Processes, 2018, Exercise Sheet 3}}\par
+    Please drop your answers to \textbf{Questions $3$ and $4$} in the Random Processes Coursework Box opposite Maths Reception by 17:00 on Thursday 1st February. Please send comments and corrections to \textbf{d.ellis@qmul.ac.uk}.
+    \begin{enumerate}
+        \item  A Markov chain has transition matrix
+        $$P = \begin{pmatrix}
+            \frac{1}{2} & \frac{1}{2} & 0\\
+            0 & \frac{1}{2} & \frac{1}{2}\\
+            0 & 0 & \frac{1}{2}\\
+        \end{pmatrix}$$
+        Show that for each $t\in \mathbb{N}$, we have
+        $$
+        P^t =
+        \begin{pmatrix}
+            2^{-t} & t2^{-t} & 1-2^{-t}-t2^{-t}\\
+            0 & 2^{-t} & 1-2^{-t}\\
+            0 & 0 & 1\\
+        \end{pmatrix}.
+        $$
+        \item  Let $P$ be an $n$ by $n$ matrix.
+        \begin{enumerate}
+            \item Give the (necessary and sufficient) conditions under which $P$ is the transition matrix of some Markov chain.
+            \item  Let $(X_0, X_1, X_2, X_3,\ldots)$ be a Markov chain with transition matrix. Prove that for any positive integer $k$, ($X_0, X_k, X_{2k}, X_{3k},\ldots$) is also a Markov chain.What is its transition matrix?
+            \item Let $t \in \mathbb{N}$. If $P$ has $n$ distinct complex eigenvalues, $\lambda_1,\ldots,\lambda_n$ say, what are the eigenvalues of $P^t$? Justify your answer.            
+        \end{enumerate}
+        \item  I play a game as follows. A bucket contains four red balls and three green balls. At each step, a ball is chosen at random from the bucket, with each of the balls there being equally likely to be chosen. If a red ball is chosen, it is removed from the bucket. If a green ball is chosen, it is returned to the bucket. The game continues until all of the four red balls have been removed from the bucket. What is the expected number of steps before the game ends?
+        \item  A grasshopper jumps about at random between the corners of a triangle. If he is at one corner, he is equally likely to jump to either of the other two corners (but he never jumps straight up in the air and lands on the same corner where he was before) For each positive integer $t$, find the probability that, after $t$ jumps, the grasshopper is back on the corner it started from.
+        \item 
+        \begin{enumerate}
+            \item A die is ‘tampered with’ so that each time it is rolled, the score it shows cannot be the same as it was in the roll before, but all the other five scores are equally likely (with probability $1/5$ each.) Suppose the first roll is a $6$. For each positive integer $t$, find the probability that the $t$th roll is a $6$, and find the probability that the $t$th roll is a $1$.
+            \item Another die is ‘tampered with’ so that each time it is rolled, the score it shows cannot be one more than it was in the roll before (and also it cannot be a $1$, if the score in the roll before was a $6$), but all the other five scores are equally likely (with probability $1/5$ each). Suppose again that the first roll is a $6$. For each positive integer $t$, find the probability that the $t$th roll is a $6$.
+            
+        \end{enumerate}
+        
+    \end{enumerate}
+\end{document}

@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \section*{Page Break Equation}
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+        \mathbb{P}(Y(t) = k)
+        &= \sum_{i=0}^\infty \mathbb{P}(X(t) = k+i)\mathbb{P}(Y(t) = k\, | \, X(t)=k+i)\\
+        &= \sum_{i=0}^\infty \frac{\lambda^{k+i}}{(k+i)!}e^{-\lambda}\binom{k+i}{k}p^k(1-p)^i\\
+        &= \sum_{i=0}^\infty \frac{\lambda^k \lambda^i}{k!i!}e^{-\lambda}p^k(1-p)^i\\
+        &= \frac{(p\lambda)^k}{k!}e^{-\lambda} \sum_{i=0}^\infty \frac{((1-p)\lambda)^i}{i!}\\
+        &= \frac{(p\lambda)^k}{k!}e^{-\lambda}e^{(1-p)\lambda}\\
+        &= \frac{(p\lambda)^k}{k!}e^{-p\lambda}.\\
+    \end{align*}
+    \endgroup
+    %
+    \section*{Breaking Equation in aligned line}
+    \begin{align*}
+        f_{T_n}(t)
+        &= -\left(\lambda + \lambda^2t+\cdots+\frac{\lambda^{n-2}t^{n-3}}{(n-3)!}+\frac{\lambda^{n-1}t^{n-2}}{(n-2)!}\right)e^{-\lambda t}\notag \\
+        & \quad \quad + \left(1 + \lambda t + \frac{(\lambda^2t)}{2!}+\cdots+\frac{(\lambda t)^{n-2}}{(n-2)!}+\frac{(\lambda t)^{n-1}}{(n-1)!}\right)\lambda e^{-\lambda t}\\
+        &= \frac{\lambda^nt^{n-1}}{(n-1)!}e^{-\lambda t}
+    \end{align*}
+    %
+    \section*{tfrac,frac,dfrac}
+    \begin{align*}
+        \mathbb{P}(A(\tfrac{3}{2})= 3, B(\tfrac{3}{2}) = 3\, | \, A(\tfrac{3}{4}) = 2, B(\tfrac{3}{4})=1)\\
+        \mathbb{P}(A(\dfrac{3}{2})= 3, B(\dfrac{3}{2}) = 3\, | \, A(\dfrac{3}{4}) = 2, B(\dfrac{3}{4})=1)\\
+        \mathbb{P}(A(\frac{3}{2})= 3, B(\frac{3}{2}) = 3\, | \, A(\frac{3}{4}) = 2, B(\frac{3}{4})=1)
+    \end{align*}
+\end{document}

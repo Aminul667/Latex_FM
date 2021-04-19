@@ -1,0 +1,61 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+	    \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+	    Coursework 5
+    \end{center}
+Please hand in your solution of the \textbf{starred} exercises by \textbf{17.00 on Wednesday 2 November 2016} using the green Introduction to Mathematical Finance Collection Box on the second floor of the Mathematics Building. Don’t forget to put your \textbf{name} (with your \underline{surname} underlined), \textbf{student number} and your \textbf{tutorial group} on your solutions, and to \textbf{staple} them.\par
+\textbf{Exercise* 1.} Let $W(t)$ be the Wiener process and let $0 < s < t$ be fixed positive numbers.
+\begin{enumerate}[(a)]
+    \item  Find constants $\alpha \ \text{and}\ \beta$ such that
+    $$W(s) + W(t) = \alpha W(s) + \beta (W(t)-W(s)).$$
+    \item Determine the distribution of $W(s) + W(t).$
+\end{enumerate}
+%
+\textbf{Exercise 2.} Suppose $Y(t)$ is Brownian motion with drift having drift parameter $\mu=0.06$ and volatility parameter $\sigma = 0.1$.
+%
+\begin{enumerate}[(a)]
+    \item Find the probability that $Y(5)$ takes a negative value.
+    \item Determine $\mathbb{E}(Y(5))$.
+    \item Determine $\mathbb{V}ar(Y (5))$.
+\end{enumerate}
+%
+\textbf{Exercise 3.}  Let $Y(t)$ be Brownian motion with drift having drift parameter $\mu = 0.1$ and volatility parameter $\sigma = 0.5$.
+%
+\begin{enumerate}
+    \item Determine $\mathbb{E}(Y (3) + Y (10))$.
+    \item Determine $Cov(Y (3), Y (10))$
+    \item Determine $\mathbb{V}ar(Y (3) + Y (10))$
+\end{enumerate}
+%
+\textbf{Exercise* 4} The board of directors of Company XYZ has recently decided to raise capital through getting listed on the London Stock Exchange. The yearly price of its stock evolves according to geometric Brownian motion with drift parameter $\mu = 1.4$ and volatility parameter $\sigma = 2.9$. Find the probabilities that:
+%
+\begin{enumerate}[(a)]
+    \item after three weeks the stock has lost at least a third of its value;
+    \item the price will decrease during the time period between the end of the third week and the end of the fifth week.
+\end{enumerate}
+\end{document}

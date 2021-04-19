@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 6 — Solutions
+    \end{center}
+    \textbf{Exercise* 1.} Let $W = 1000$ denote your initial monthly withdrawals and let $A = 250$ denote your monthly repayments, both measured in pounds.
+    %
+    \begin{enumerate}[(a)]
+        \item Let $t$ denote the time after which you will have repaid your debt measured in months after your graduation and let
+        $$\beta = \frac{1}{1+\frac{0.015}{12}}$$
+        Noting that there are $36$ months in $3$ years, the present value $PV_W$ of your withdrawals is
+        $$PV_W = W + W\beta + W\beta^2+\ldots+W\beta^{36} = W\frac{1-\beta^{36}}{1-\beta},$$
+        while the present value $PV_A$ of your repayments is
+        $$PV_A = A\beta^{36}+A\beta^{37}+\ldots+A\beta^{36+t} = A\beta^{36}(1+\beta+\ldots+\beta^t)=A\beta^{36}\frac{1-\beta^{t+1}}{1-\beta}$$
+        You will finally repay your debt when $PV_W = PV_A$, so
+        $$W\frac{1-\beta^{36}}{1-\beta} = A\beta^{36}\frac{1-\beta^{t+1}}{1-\beta}.$$
+        Solving for $t$ we find
+        $$\beta^{t+1} = 1 - \frac{W}{A}(\beta^{-36}-1),$$
+        So
+        $$(t+1)\log\beta = \log\left(1-\frac{W}{A}(\beta^{-36}-1)\right),$$
+        and thus
+        $$t = \frac{\log\left(1-\frac{W}{A}(\beta^{-36}-1)\right)}{\log\beta}-1=161.77$$
+        Thus you need to make repayments for $162$ months after your graduation, and you need to make $163$ payments in total.
+        \item Let $R$ be the amount of your last payment in pounds. The present value $PV_R$ of your last payment is the present value of your withdrawals less the present value of your $162$ payments over $250$ pounds, that is,
+        $$PV_R = (W+W\beta+\ldots+W\beta^{35}) - (A\beta^{36}+A\beta^{37}+\ldots +A\beta^{36+161})=W\frac{1-\beta^{36}}{1-\beta}-A\beta^{36}\frac{1-\beta^{162}}{1-\beta}.$$
+        As your last payment will be made 36 + 162 = 198 months from now, its present value is
+        $$PV_R=R\beta^{168}$$
+        Thus
+        $$R=PV_R\beta^{-198} = \left(W\frac{1-\beta^{36}}{1-\beta}-A\beta^{36}\frac{1-\beta^{162}}{1-\beta}\right) = 192.1195,$$
+        that is, your last payment will be $192.12$ pounds.
+    \end{enumerate}
+    %
+    \textbf{Exercise 2.} Write
+    $$\beta = \frac{1}{1+\frac{0.01}{12}}$$
+    \begin{enumerate}[(a)]
+        \item Let $A$ be the amount of your monthly payments in pounds. Noting that the present value of your repayments must equal the 1000 pounds you owe, we must have
+        $$1000 = 250 +A\beta+A\beta^2+\ldots + A\beta^{36}$$
+        Thus
+        $$750 = A\beta(1+\beta+\ldots +\beta^{35}) = A\beta\frac{1-\beta^{36}}{1-\beta},$$
+        so
+        $$A = \frac{750}{\beta}\frac{1-\beta}{1-\beta^{36}} = 21.156,$$
+        that is, your monthly payments will be 21.16 pounds.
+        \item Let $n$ be the number of payments you need to make. Then
+        $$1000 = 20 + 20\beta + 20\beta^2+\ldots + 20\beta^(n-1),$$
+        so 
+        $$1000=20\frac{1-\beta^n}{1-\beta}\quad \Rightarrow \quad \beta^n = 50\beta-49.$$
+        Solving for $n$ yields
+        $$n = \frac{\log(50\beta - 49)}{\log \beta}=51.049.$$
+        Thus, you need to make $52$ payments.
+    \end{enumerate}
+    \textbf{Exercise 3.} Recall that for $|x| < 1$,
+    $$\log(1+x) = x - \frac{1}{2}x^2+\frac{1}{3}x^3-\ldots$$
+    which is just the Taylor series of $\log(1 + x)$ around the point $0$. The above expansion together with the continuity of the exponential function now yields
+    \begin{align*}
+        \lim_{n \to \infty}P\left(1+\frac{r}{n}\right)^{nt} & = \lim_{n\to \infty}P\, \exp\left(\log\left(1+\frac{r}{n}\right)^{nt}\right)\\
+        &= \lim_{n\to \infty}P\, \exp\left(nt\,\log\left(1+\frac{r}{n}\right)\right)\\
+        &= \lim_{n\to \infty}P\, \exp\left(nt\, \left(\frac{r}{n}-\frac{1}{2}\left(\frac{r}{n}\right)^2+\frac{1}{3}\left(\frac{r}{n}\right)^3-\ldots\right)\right)\\
+        &=\lim_{n\to \infty}P\, \exp\left(rt-\frac{1}{2}\frac{tr^2}{n}+\frac{1}{3}\frac{tr^3}{n^2}-\ldots\right)\\
+        &= P\, \exp(rt-0+0-\ldots)\\
+        &= P\, \exp(rt).
+    \end{align*}
+\end{document}

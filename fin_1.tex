@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+
+\begin{document}
+\begin{center}
+	\LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+	Coursework 3
+\end{center}
+
+Please hand in your solution of the \textbf{starred} exercises by \textbf{17.00 on Wednesday 19 October 2016} using the green Introduction to Mathematical Finance Collection Box on the second floor of the Mathematics Building. Don’t forget to put your \textbf{name} (with your \underline{surname} underlined) and \textbf{student number} on your solutions, and to \textbf{staple} them.
+
+\textbf{Exercise 1.} Recent research\footnote{1HM Burgher, The distribution of incubation periods for gastrointestinal infections, Bethnal Green J. Hygiene, 51 (2003), 310–318} suggests that the latency period for food poisoning, that is the time (in hours) from ingestion of contaminated food until the appearance of the first symptoms, is lognormally distributed with $\mu = 0.83$ and $\sigma^2 = (0.39)^2$.\par
+In the evening before the Introduction to Mathematical Finance exam you go out for dinner and you suspect that the food may have been dodgy, but you are not sure whether it was contaminated.
+
+\begin{enumerate}[(a)]
+	\item Assuming that the food was contaminated, what is the probability that you start feeling ill within $2$ hours after dinner?
+	\item You are worried that you may not be fit to sit the exam. For how many hours after dinner do you need to be symptom-free, so that you can be $99\%$ sure that the food was not contaminated?
+\end{enumerate}
+
+\textbf{Exercise 2.} A random variable is said to be standard Cauchy if its probability density function is given by $$f(x) = \frac{1}{\pi}\frac{1}{1+x^2}\quad (x\in\mathbb{R})$$ Show that if $X$ is a standard Cauchy random variable, then $Y = 1/X$ is also a standard Cauchy random variable.
+
+\textbf{Exercise 3.}
+
+\begin{enumerate}[(a)]
+	\item Let $Y$ be $LogNormal(\mu,\sigma^2)$ distributed. Use the fact that $\mathbb{E}(Y) = \mathbb{E}(e^X) = \int_{-\infty}^\infty e^xfX(x)\,dx$, where $X$ is $N(\nu, \sigma^2)$ distributed, to show that $$\mathbb{E}(Y)=exp\left(\mu+\frac{1}{2}\sigma^2\right)$$ and that $$\mathbb{V}ar(Y) = exp(2\mu+\sigma^2)[exp(\sigma^2-1)].$$
+	\item Let $Y$ be $LogNormal(\mu,\sigma^2)$ distributed with expectation $\mathbb{E}(Y) = 0.6$ and  varianc $\mathbb{V}ar = 0.2$. Determine $y>0$ such that $\mathbb{P}(Y \leq y) = 0.05$.
+\end{enumerate}
+
+
+\end{document}

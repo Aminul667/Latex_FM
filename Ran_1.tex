@@ -1,0 +1,94 @@
+\documentclass[11pt,a4paper,twoside]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+\usepackage{array}
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+\textbf{MTH6141 Random Processes, 2018, Exercise Sheet 2}\par
+Please drop your answers in the Random Processes coursework box opposite Maths Reception by 5pm on Thursday 25th January.\par
+You are strongly encouraged to attempt questions other than Q1 and Q4. Question 2 is a good “warm up” exercise, and Q3 provides experience in “modelling” a simple situation as a Markov chain.\par
+Please send comments and corrections to \href{d.ellis@qmul.ac.uk}{d.ellis@qmul.ac.uk}.
+
+\begin{enumerate}
+%Q1
+   \item Let $(X_0,\, X_1,\, X_2,\, \cdots)$ be the Markov chain with state-space $S=\{1,2\}$ and with transition matrix
+   $$P = \begin{pmatrix}
+   			\frac{2}{3} & \frac{1}{3}\\
+   			\frac{1}{6} & \frac{5}{6}
+   		\end{pmatrix}$$
+
+   \begin{enumerate}
+     \item By diagonalising $P$, find $P^5$
+     \item Find $\mathbb{P}(X_5=1\, |\, X_0=1)$ and $\mathbb{P}(X_5 = 1\, |\, X_0 = 2)$.
+     \item Find $\mathbb{P}(X_{20} = 1\, |\, X_0 = 1)$ and $\mathbb{P}(X_{20} = 1\, |\, X_0 = 2)$.  (Simplify your expressions enough to support your answer to part (d).)
+	 \item Comment on your answers to (b) and (c).
+   \end{enumerate}
+
+%Q2
+   \item A Markov chain with state-space ${1, 2, 3, 4}$ has transition matrix
+   		$$\begin{pmatrix}
+   			1 & 0 & 0 & 0\\
+   			\frac{1}{4} & \frac{1}{4} & \frac{1}{4} & \frac{1}{4}\\
+   			\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & \frac{1}{2}\\
+   			0 & 0 & 0 & 1
+   		 \end{pmatrix}$$
+
+   \begin{enumerate}
+     \item Which states are absorbing?
+     \item Find the probability that the chain ends up in state $1$, given that it starts in state $2$.
+   \end{enumerate}
+%Q3
+   \item A standard die is rolled repeatedly until the sum of two consecutive rolls is exactly $4$.
+
+   \begin{enumerate}
+     \item Show how to model this process using a Markov chain with about $43$ states.
+     \item Show how to model this process using a Markov chain with a substantially smaller number of states.
+     \item Calculate the expectation of the number of rolls made in total.
+   \end{enumerate}
+   
+%Q4
+   \item  This is an exercise in applying ‘first-step analysis’. A Markov chain with state-space $\{1, 2, 3, 4, 5\}$ has transition matrix
+   		$$\begin{pmatrix}
+   			0 & \frac{2}{3} & \frac{1}{3} & 0 & 0\\
+   			0 & \frac{1}{3} & \frac{1}{2} & 0 & \frac{1}{6}\\
+   			0 & \frac{1}{2} & 0 & \frac{1}{4} & \frac{1}{4}\\
+   			0 & 0 & 0 & 1 & 0 \\
+   			0 & 0 & 0 & 0 & 1
+   		 \end{pmatrix}$$
+The process starts in state $1$.
+
+   \begin{enumerate}
+     \item State $5$ is an absorbing state. Which other state is absorbing?
+     \item Calculate the probability that the process is absorbed in the state $5$.
+     \item Calculate the expectation of the time of absorption.
+     \item Calculate the expectation of the number of visits to state $2$ before absorption.
+     \item Suppose that you gain $\pounds 10$ for each visit to state $2$ and lose $\pounds 5$ for each visit to state $3$. Calculate the expectation of the amount of money you gain.
+
+   \end{enumerate}
+
+%Q5
+   \item Find a simple example of a Markov chain with a finite state space and with two absorbing states, for which the probability that the process eventually reaches an absorbing state is strictly between $0$ and $1$. Do the ‘first-step analysis’ equations for finding the probability of absorption in a particular absorbing state in your chain have a unique solution? If not, how would you identify the correct solution in your example?
+   
+\end{enumerate}
+ 
+ 
+ 
+\end{document}

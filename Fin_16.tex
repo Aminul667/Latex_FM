@@ -1,0 +1,208 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+\usepackage{nopageno}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\pagestyle{plain}
+\setstretch{1.5}
+
+
+% \fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 10 — Solutions
+    \end{center}
+    %
+    \textbf{Exercise* 1.} We try to find $p_1, p_2, p_3 \geq 0$ with $p_1 + p_2 + p_3 = 1$ such that the following system of equations holds
+    \begin{equation}\label{eq:1}
+        \begin{aligned}
+            p_1r_1(1) + p_2r_1(2) + p_3r_1(3) &= 0\\
+            p_1r_1(1) + p_2r_2(2) + p_3r_2(3) &= 0
+        \end{aligned}
+    \end{equation}
+    Thus
+    \begin{align*}
+        p_1 + p_2 - p_3 &= 0\\
+        -2p_1 - p_2 + 4p_3 &= 0
+    \end{align*}
+    or in matrix notation
+    \begin{equation}\label{eq:2}
+        \underbrace{
+            \begin{pmatrix}
+                1 & 1 & -1\\
+                -2 & -1 & 4
+            \end{pmatrix}
+        }_A
+        \begin{pmatrix}
+            p_1\\
+            p_2\\
+            p_3
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            0\\0
+        \end{pmatrix}.
+    \end{equation}
+    In order to find the general solution of this system we perform elementary row operations to bring the matrix $A$ to reduced row echelon form\footnote{If this doesn’t mean anything to you, you may want to consult your Linear Algebra I notes again.}
+    $$
+    \begin{pmatrix}
+        1 & 0 & -3\\
+        0 & 1 & 2
+    \end{pmatrix}
+    $$
+    from which we read off the general solution of (\ref{eq:2})
+    $$
+    p_1 = 3\alpha,\ p_2 = -2\alpha,\ p_3 = \alpha \quad (\alpha \in \mathbb{R}).
+    $$
+    Thus the only solution for which all $p_1,\ p_2,\ p_3 \geq 0$ is the trivial one, that is $p_1 = p_2 = p_3 = 0$, which, however, does not satisfy the condition
+    $$
+    p_1+p_2+p_3 = 1.
+    $$
+    Thus, there is no solution of (\ref{eq:1}) with $p_1,\ p_2,\ p_3 \geq 0$ and $p_1 + p_2 + p_3 = 1$. The Arbitrage Theorem now implies that there must exist a betting strategy $x = (x_1, x_2)$ giving a guaranteed risk-free profit.
+    \newpage
+    \hspace*{1cm} \textbf{Remarks:}
+    \begin{enumerate}[(i)]
+        \item \textsl{This is one possible way to show that there does not exist a solution to the above system of equations for $p_1,\ p_2,\ p_3$. There are various other ways to show this and you are allowed to use whichever you prefer}
+        \item \textsl{Note that one possible arbitrage strategy generating a risk-free profit is $x = (3, 1)$ (see Coursework 9, Question 4).}
+    \end{enumerate}
+    \textbf{Exercise 2.} By the Arbitrage Theorem it suffices to determine under which conditions there exist positive real numbers $p_1, \ldots , p_m$ with $p_1 + \ldots + p_m = 1$ such that
+    $$
+    \sum_{j=1}^mp_jr_i(j) = 0 \quad (\forall i = 1, \ldots m).
+    $$
+    Now, for fixed $i$, the above becomes
+    \begin{align*}
+        0 
+        = \sum_{j=1}^m p_jr_i(j)
+        &= p_io_i+ \sum_{\substack{j = 1\\j\neq i}}^m p_j \cdot (-1)\\
+        &=p_io_i - \sum_{\substack{j= 1\\j\neq i}}^m p_j\\
+        &= p_io_i - \left(\sum_{j=1}^m p_j-p_i\right)\\
+        &= p_io_i-(1-p_i)\\
+        &= p_i(o_i+1)-1,
+    \end{align*}
+    that is,
+    $$
+    p_i(o_i + 1) − 1 = 0 ,
+    $$
+    hence
+    $$
+    p_i = \frac{1}{1+o_i}.
+    $$
+    Noting that
+    $$
+    0 \leq \frac{1}{1+o_i} \leq 1,
+    $$
+    the Arbitrage Theorem now implies that, either these probabilities satisfy $p_1 + \ldots + p_m = 1$, i.e.
+    $$
+    \sum{i=1}^m \frac{1}{1+o_i} = 1,
+    $$
+    or there is an arbitrage opportunity.\par 
+    %
+    \textbf{Exercise 3.} Consider two wagers (which means that $n = 2$ in the Arbitrage Theorem):
+    \begin{itemize}
+        \item Wager $i = 1$: purchase one share;
+        \item Wager $i = 2$: purchase one call option.
+    \end{itemize}
+    There are two possible outcomes of this experiment (which means that $m = 2$ in the Arbitrage Theorem), namely:
+    \begin{itemize}
+        \item Outcome $j = 1$: the price of the share moves up;
+        \item Outcome $j = 2$: the price of the share moves down.
+    \end{itemize}
+    In order to avoid the existence of arbitrage, there must exist $p_1,\ p_2 \geq 0$ with $p_1 + p_2 = 1$ such that
+    \begin{equation*}
+        \begin{aligned}
+            p_1r_1(1) + p_2r_1(2) = 0\\
+            p_1r_2(1)+p_2r_2(2) = 0
+        \end{aligned}
+        \qquad \text{(for both wagers $i = 1, 2$).}
+    \end{equation*}
+    Let $p_1 = p$, so $p_2 = 1 − p$.\\
+    \hspace*{0.5cm} For the wager $i = 1$, we must have
+    $$
+    p\underbrace{\left(\frac{228}{1+0.02}-217\right)}_{r_1(1)}+(1-p)\underbrace{\frac{205}{1+0.02}-217}_{r_1{2}} = 0.
+    $$
+    Thus
+    $$
+    6.5294\, p − 16.0196 (1 − p) = 0 ,
+    $$
+    so 
+    $$
+    p = \frac{16.0196}{22.5490} = 0.7104.
+    $$
+    Now, for the wager $i = 2$, we must have
+    \begin{align*}
+        & p\underbrace{\left(\frac{(228-220)^+}{1+0.02}-C\right)}_{r_2(1)}+(1-p)\underbrace{\left(\frac{(205-220)^+}{1+0.02}-C\right)}_{r_1(2)}=0\\
+        & 0.7104 \underbrace{\left(\frac{8}{1.02}-C\right)}_{r_2(1)}+0.2896\underbrace{\left(-C\right)}_{r_1(2)} = 0.
+    \end{align*}
+    Thus
+    $$
+    5.5720 − C = 0,
+    $$
+    so this call option’s premium is
+    $$
+    C = \pounds 5.57.
+    $$
+    %
+    \textbf{Exercise 4.}
+    \begin{enumerate}[(a)]
+        \item First, suppose that $\underline{(1 + r)S < S_d}$. In this case an arbitrage opportunity arises as follows. At time $t = 0$ borrow an amount $S$ from a bank and use the money to buy one share (costs $S$). At time $t = 1$, sell the share in the market and receive $S(1)$. You also need to settle your debts with the bank, so you pay back the loan by paying ($1 + r)S$, since the interest rate is compounded per period.\\
+        Therefore, you pay nothing at time $0$ and your payoff from this investment strategy at time $1$ is equal to $S(1) − (1 + r)S$. We know that $S(1)$ can be either equal to $S_d$ or Su and (by assumption) we have $(1 + r)S < S_d < S_u$. Therefore, no matter what happens you have a strictly positive payoff, namely a risk-free profit of $S(1) − (1 + r)S \geq S_d − (1 + r)S > 0$, which is an arbitrage.\\
+        Secondly, suppose that $\underline{S_u < (1 + r)S}$. In this case an arbitrage opportunity arises as follows. At time $t = 0$ (short)sell one share (receive $S$) and invest this amount $S$ in a bank. At time $t = 1$, buy back the share from the market (in order to return it to the lender) by paying $S(1)$. You also have an amount $(1 + r)S$ in the bank, since the interest rate is compounded per period.\\
+        Therefore, you pay nothing at time $0$ and your payoff from this investment strategy at time $1$ is equal to $(1 + r)S − S(1)$. We know that $S(1)$ can be either equal to $S_d$ or $S_u$ and (by assumption) we have $S_d < S_u < (1 + r)S$. Therefore, no matter what happens you have a strictly positive payoff, namely a risk-free profit of $(1 + r)S − S(1) \geq (1 + r)S − S_u > 0$, which is an arbitrage.
+        \item The present value of your return from buying the stock is
+        $$
+        \begin{cases}
+            \frac{S_u}{1+r}-S & \text{if the stock has risen to $S_u$};\\
+            \frac{S_d}{1+r}-S & \text{if the stock has fallen to $S_d$}.
+        \end{cases}
+        $$
+        Let $p_1,\ p_2 \geq 0$ be such that $p_1 + p_2 = 1$. Therefore for $p_1 = p$ we have $p_2 = 1 − p$ (using $p_1 + p_2 = 1$) and we still want $p \geq 0$. From the Arbitrage Theorem we have that under no-arbitrage, we have that
+        $$
+        p\left(\frac{S_u}{1+r}-S\right)+(1-p)\left(\frac{S_d}{1+r}-S\right) = 0.
+        $$
+        holds. Thus
+        $$
+        p = \frac{(1+r)S-S_d}{S_u-S_d}.
+        $$
+        Note that since $S_d \leq (1 + r)S \leq S_u$ we have
+        $$
+        0 \leq p \leq 1\, ,
+        $$
+        which is what we required. Now we move forward to price the call option. The present value of your return from buying the call is given by
+        $$
+        \text{PV of return}
+        =
+        \begin{cases}
+            \frac{(S_u-K)^+}{1+r}-C = \frac{S_u-K}{1+r}-C & \text{if the stock has risen to $S_u$;}\\
+            \frac{(S_d-K)^+}{1+r}-C=-C & \text{if the stock has fallen to $S_d$}.
+        \end{cases}
+        $$
+        In order to have no-arbitrage in the market, we must have
+        $$
+        p\left(\frac{S_u-K}{1+r}-C\right)+(1-p)(-C)=0.
+        $$
+        Thus by rearranging and using the probability calculated above, we get
+        $$
+        C
+        = p\frac{S_u-K}{1+r}
+        = \frac{((1+r)S-S_d)(S_u-K)}{(S_u-S_d)(1+r)}.
+        $$
+    \end{enumerate}
+\end{document}

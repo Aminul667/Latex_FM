@@ -1,0 +1,222 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{hyperref}
+\usepackage{amsthm}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+% \parindent 0ex
+% \setlength{\parskip}{1em}
+
+\newenvironment{psmallmatrix}
+  {\left(\begin{smallmatrix}}
+  {\end{smallmatrix}\right)}
+
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem*{fact}{Fact}
+
+\begin{document}
+    \section*{MTH6141 Random Processes, 2018, Exercise Sheet 6}
+    %
+    Please drop your answers to \textbf{Questions 1, 5 and 6} in the Random Processes coursework box by 5pm on Thursday 29th February. (As it is Reading Week next week, there are slightly more questions than usual!)\\
+    Please send comments and corrections to \href{d.ellis@qmul.ac.uk}{d.ellis@qmul.ac.uk}.\par
+    As it is reading week, this exercise sheet is slightly different to normal. Read the following passages, and then answer the questions which follow.
+    %
+    \section*{First return time and positive recurrence}
+    If $(X_0, X_1, X_2,\ldots)$ is a Markov chain with state space $S$, and $i \in S$, then the random variable $R_i$ is defined to be the first time at which the Markov chain returns to the state $i$, given that it starts at the state $i$. In symbols,
+    $$R_i = min\{t \geq 1: X_t = i\}, \quad \text{given that}\ X_0 = i$$
+    (If the Markov chain never returns to $i$ after time $0$, then we define $ R_i = \infty $.) The random variable $R_i$ is called the ‘\textit{\textbf{time of first return to}} $i$’.\par
+    If a Markov chain has \textit{finite} state space $S$, then a recurrent state $i \in S$ always has $\mathbb{E}[R_i] < \infty$. (See if you can prove this!) But if a Markov chain has \textit{infinite} state space, then a state can be recurrent but still have $\mathbb{E}[R_i] = \infty$, i.e., if we start from $i$ then we return to $i$ with probability $1$, but the expected time of first return to $i$ is infinite. So it’s useful for us to introduce an even \textit{stronger} property than recurrence: this stronger property is the property of \textit{positive recurrence}.
+    \begin{definition}
+      Let $(X_0, X_1, X_2,\ldots)$ be a Markov chain with state space $S$. Suppose $i \in S$ is recurrent. We say that $i$ is positive recurrent if $\mathbb{E}[R_i] < \infty $. We say that $i$ is null recurrent if $\mathbb{E}[R_i] = \infty $.
+    \end{definition}
+    The following theorem gives us a useful characterisation of when a recurrent state is positive recurrent, in terms of the $t$-step transition probabilities $p^{(t)}_{i,i}$.
+    \begin{theorem}
+      Let $(X_0, X_1, X_2, \ldots)$ be a Markov chain with state space $S$. Let $i \in S$ be a recurrent state. Then
+      \begin{itemize}
+        \item  $i$ is null recurrent if and only if $p_{i,i}^{(t)} \to 0$ as $t \to \infty$;
+        \item $i$ is positive recurrent if and only if $p_{i,i}^{(t)} \nrightarrow  0$ as $t \to infty$.
+      \end{itemize}
+    \end{theorem}
+    Theorem 1 can be used to show that positive recurrence (like recurrence) is a \textit{class property}:
+    \begin{fact}
+      Let $(X_0, X_1, X_2, \ldots)$ be a Markov chain with state space $S$. Let $C \subset S$ be a communicating class. If $i \in C$ is positive recurrent, then so are all the states in $C$.
+    \end{fact}
+    (You will hopefully show this in the exercises.) So, if the Markov chain is irreducible (this means that the whole of $S$ is a communicating class), then either all its states are positive recurrent, or else none of its states are positive recurrent. So for an irreducible Markov chain, we can say that the whole chain is ‘positive recurrent’ (or ‘null recurrent’).\par
+    The following theorem tells us exactly when an irreducible Markov chain with a \textit{countably infinite} state space has a unique equilibrium distribution.
+    \begin{theorem}
+      Let $(X_0, X_1, X_2, \ldots)$ be an irreducible Markov chain with a countably infinite state space $S$. Then $(X_0, X_1, X_2, \ldots)$ has a unique equilibrium distribution if and only if it has a positive recurrent state. In this case, all the states are positive recurrent, and the unique equilibrium distribution $w$ is given by
+      $$w_i=\frac{1}{\mathbb{E}[R_i]} \quad \forall i \in S.$$
+    \end{theorem}
+    %
+    \section*{The symmetric random walk on $\mathbb{Z}$}
+    One of the classic examples of a Markov chain with infinite state space is the \textit{symmetric random walk on} $\mathbb{Z}$. This is the Markov chain with state space $\mathbb{Z}$ and with transition probabilities $p_{i,i+1} = p_{i,i−1} = \frac{1}{2}$ for all $i \in \mathbb{Z}$, and all other transition probabilities zero.\par
+    Recall from the lectures that this Markov chain is irreducible (for any two integers $i, j \in \mathbb{Z}$, we can get from $i$ to $j$ by taking $j − i$ steps to the right if $i < j$, or taking $i − j$ steps to the left if $i > j$), but it has no equilibrium distribution.\par
+    We’ll show that \textbf{every state of this Markov chain is recurrent}. We’ll do this by showing that the state $0$ is recurrent; then, as the Markov chain is irreducible, it will follow that every state must be recurrent.\par 
+    We’ll show that the state 0 is recurrent by showing that
+    $$\sum_{t = 1}^\infty p_{0,0}^{(t)} = \infty$$
+    (Recall from your notes on recurrence and transience that this condition is equivalent to the state $0$ being recurrent.)\par 
+    I claim that
+    $$
+    p_{0,0}^{(t)}
+    =
+    \begin{cases}
+      \begin{psmallmatrix} t \\ t/2 \end{psmallmatrix}2^{-t} & \text{if}\ t \ \text{is even}\\
+      0 & \text{if}\ t \ \text{is odd}
+    \end{cases}
+    $$
+    To see this, observe that if we start at the state 0, then we must be at odd-numbered states at odd times, and at even-numbered states at even times. So we cannot be back at state $0$ at an odd time, and therefore $p_{0,0}^{(t)} = 0$ if t is odd.\par
+    If $t$ is even, then the only way we can be back at the state $0$ at time $t$ is if we took exactly $t/2$ jumps to the right and exactly $t/2$ jumps to the left (in some order). For any sequence of $t$ jumps containing $t/2$ leftward jumps and $t/2$ rightward jumps, the probability of this sequence of jumps occurring is $(1/2)^{t/2}(1/2)^{t/2} = 2^{-t}$. And there are $\begin{psmallmatrix} t \\ t/2\end{psmallmatrix}$ different sequences of $t$ jumps containing $t/2$ leftward jumps and $t/2$ rightward jumps. Each ‘sequence’ represents a different ‘route’ from 0 back to $0$ in exactly $t$ steps. So altogether, the transition probability is
+    $$
+    p_{0,0}^{(t)}
+    =
+    \text{number of possible routes }\times \text{ probability of each route}
+    =
+    \begin{pmatrix}
+      t \\ t/2
+    \end{pmatrix}
+    \times 2^{-t},
+    $$
+    as I claimed.\par 
+    So we have
+    $$
+    \sum_{t = 1}^\infty p_{0,0}^{(t)}
+    =
+    \sum_{t\ \text{even}}
+    \begin{pmatrix}
+      t \\ t/2
+    \end{pmatrix}
+    2^{-t}
+    =
+    \sum_{n=1}^\infty
+    \begin{pmatrix}
+      2n \\ n
+    \end{pmatrix}
+    2^{-2n}.
+    $$
+    We now use a well-known lower bound for the middle binomial coefficient
+    $
+    \begin{psmallmatrix}
+      2n \\ n
+    \end{psmallmatrix}
+    $
+    for any $n \in \mathbb{N}$, we have
+    $$
+    \begin{pmatrix}
+      2n \\ n
+    \end{pmatrix}
+    \geq
+    \frac{2^{2n}}{2\sqrt{2n}}.
+    $$
+    This implies that
+    $$
+    \sum_{t = 1}^\infty p_{0,0}^{(t)}
+    \geq
+    \sum_{n=1}^\infty \frac{2^{2n}}{2\sqrt{2n}}2^{-2n}
+    =
+    \frac{1}{2\sqrt{2}}\sum_{n=1}^\infty \frac{1}{\sqrt{n}}.
+    $$
+    It is a well-known fact from analysis that $\sum_{n=1}^\infty \frac{1}{\sqrt{n}} = \infty$. It is a well-known fact from analysis that
+    $$
+    \sum_{n=1}^N\frac{1}{\sqrt{n}} \geq 2\sqrt{N-1},\quad \forall N \in \mathbb{N}.
+    $$
+    Therefore, we have
+    $$\sum_{t=1}^\infty p_{0,0}^{(t)}= \infty ,$$
+    so the state $0$ is recurrent. Hence, every state of our Markov chain is recurrent.\par 
+    Recall, though, that there is no equilibrium distribution. So we know from Theorem 2 that this Markov chain is in fact \textbf{null recurrent}.
+    %
+    \section*{Questions}
+    \begin{enumerate}
+      \item Let $0 < p < 1$. Consider the Markov chain $(X_0, X_1, X_2, \ldots)$ with state space $\mathbb{Z}$ and transition probabilities given by
+      $$
+      p_{ij}
+      =
+      \begin{cases}
+        p, & \text{if}\ j = i + 1;\\
+        1-p, & \text{if}\ j = i − 1;\ \text{and}\\
+        0, & \text{otherwise}.
+      \end{cases}
+      $$
+      Show that the state 0 is transient whenever $p \neq \frac{1}{2}$.\\
+      (Hint: use the fact that 
+      $
+      \begin{psmallmatrix}
+        2n \\ n
+      \end{psmallmatrix}
+      \leq
+      2^{2n}
+      $
+      for all $n \in \mathbb{N}$.)\\
+      If $p \neq \frac{1}{2}$, is the state $999$ recurrent or transient?
+      %
+      \item  Consider the random walk on $\mathbb{N} \cup \{0\}$ with a reflecting barrier at $0$, i.e., the Markov chain with state space $\mathbb{N} \cup \{0\}$ and with transition probabilities given by
+      $$
+      p_{ij}
+      =
+      \begin{cases}
+        \frac{1}{2}, & \text{if}\ i \neq 0\ \text{and}\ |j − i| = 1;\\
+        1, & \text{if}\ i = 0\ \text{and}\ j = 1;\ \text{and}\\
+        0, & \text{otherwise}.
+      \end{cases}
+      $$
+      Prove that the state $0$ is recurrent. Is the state $999$ recurrent or transient?\\
+      (Hint. Try comparing the above random walk with the symmetric random walk on $\mathbb{Z}$ which we analysed in lectures.)
+      \item Consider the Markov chain with state space $S = \{1, 2, 3\}$ and with transition matrix
+      $$
+      \begin{pmatrix}
+        0 & 1 & 0\\
+        \frac{2}{3} & 0 & \frac{1}{3}\\
+        1 & 0 & 0
+      \end{pmatrix}
+      $$
+      For each state $i \in S$, calculate directly the distribution of $R_i$ (the time of first return to $i$) and then calculate $\mathbb{E}[R_i]$. Use these values, together with Theorem 1.26 in the (online) notes, to write down the equilibrium distribution $w = (w_1, w_2, w_3)$ for the chain. Check your answer directly against the definition of an equilibrium distribution $(wP = w)$.
+      \item Suppose that $i$ and $j$ are states in the same communicating class of a Markov chain. Use Theorem 1.27 in the (online) notes to show that $i$ is positive recurrent if and only if $j$ is positive recurrent. (In other words, positive recurrence is a ‘class property’.)
+      \item Consider the Markov chain on state space $S = \{0, 1, 2, \ldots\}$ with transition probabilities
+      $$
+      p_{ij}
+      =
+      \begin{cases}
+        \frac{i+1}{i+2}, & \text{if}\ \text{and}\ j =i + 1;\\
+        \frac{1}{i+2}, & \text{if}\ j = 0;\\
+        0, & \text{otherwise}.
+      \end{cases}
+      $$
+      \begin{enumerate}
+        \item Is this Markov chain irreducible?
+        \item  Calculate $f^{(t)}_{0,0}$ and $f_{0,0}$ for this chain and deduce from this that every state in the chain is recurrent.
+        \item Calculate $\mathbb{E}[R_0]$ and decide whether the chain is positive recurrent or null recurrent.\\
+        \textit{Hint}. To compute $f_{0,0}$ you need to sum an infinite series. This sum does have a closed form solution: try a partial fraction decomposition!
+      \end{enumerate}
+      \item Does the Markov chain from Question 5 have an equilibrium distribution w? (Write down the equations satisfied by w and try to solve them.)\\
+      Deduce whether the Markov chain is positive recurrent or null recurrent, and check that your answer is consistent with the one you gave in Question 5.
+      \item Provide an alternative proof that the Markov chain of Question 5 is recurrent,
+      this time by deciding whether the series $\sum_{t=1}^\infty p_{0,0}^{(t)}$ converges.\\
+      \textit{Hint.} Show that
+      $$\text{Prob}(X_t = 0 \, |\,  X_0 = 0) = p^{(t)}_{0,0} \geq \, \text{(something)},$$
+      by conditioning on $X_{t−1}$. This question may be a little harder than the others, even though the answer is quite short.
+
+    \end{enumerate}
+
+
+
+
+
+
+
+\end{document}

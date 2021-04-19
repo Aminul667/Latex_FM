@@ -1,0 +1,272 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \section*{MTH6141 Random Processes, 2014—15\\Solutions to Exercise Sheet 4}
+    %
+    \begin{enumerate}
+        \item 
+        \begin{enumerate}
+            \item There is a path of $3$ steps between any pair of states $i$ and $j$ (just count from $i$ (modulo $3$) and go around a loop if you arrive too early). Thus the Markov chain regular (and hence irreducible, since regular implies irreducible . By our theorem on regular Markov chains, the Markov chain has a limiting distribution $w$. Any Markov chain with a limiting distribution $u$ has $u$ as its unique invariant distribution. Hence, $w$ is the unique invariant distribution of our Markov chain. The row-vector $w$ satisfies
+            $$
+            (w_1, w_2, w_3,w_4)
+            \begin{pmatrix}
+                \frac{1}{2} & \frac{1}{2} & 0 & 0\\
+                0 & \frac{1}{3} & \frac{2}{3} & 0\\
+                0 & 0 & \frac{1}{2} & \frac{1}{2}\\
+                \frac{1}{3} & 0 & 0 & \frac{2}{3}
+            \end{pmatrix}
+            =
+            (w_1, w_2, w_3, w_4)
+            $$
+            subject to $w_1 + w_2 + w_3 + w_4 = 1$. Solving the system of linear equations, we get
+            $$
+            (w_1, w_2, w_3,w_4) = (4/17, 3/17, 4/17, 6/17).
+            $$
+            \item The chain is not irreducible (it is impossible to get from state $3$ to state $2$ for instance). It cannot be regular either (since regularity is a stronger condition: regular implies irreducible).\\
+            Any probability vector $w = (0, \alpha, 1-\alpha)$satisfies $wP = w$ so there are many invariant distributions.\\
+            As the invariant distribution is not unique, there cannot be a limiting distribution. Indeed $(0, 1, 0)P^t = (0, 1, 0)$ and $(0, 0, 1)P^t = (0, 0, 1)$ so we cannot have $P^t$ tending to a limit with constant rows. (However $P^t$ does tend to a limit; can you see what it is?)
+            \item Notice that $3$ is an absorbing state. The chain is not irreducible, as (for example) it is impossible to get from state $3$ to any other state. (It is also impossible to get from state $2$ to state $1$.) Therefore, it cannot be regular either. (Regular implies irreducible.)\\
+            The only probability vector which is a solution to $wP = w$ is $w = (0, 0, 1)$  so this is the unique invariant distribution.\\
+            It turns out that $(0, 0, 1)$ is a limiting distribution. There are two ways of seeing this. Here is the first way. Recall from Sheet 3 that
+            $$
+            P^t
+            =
+            \begin{pmatrix}
+                2^{-t} & t2^{-t} & 1-2^{-t} - t2^{-t}\\
+                0 & 2^{-t} & 1-2^{-t}\\
+                0 & 0 & 1
+            \end{pmatrix}
+            $$
+            for all $t \in \mathbb{N}$.\\
+            Hence,
+            $$
+            P^t
+            \to 
+            \begin{pmatrix}
+                0 & 0 & 1\\
+                0 & 0 & 1\\
+                0 & 0 & 1
+            \end{pmatrix}
+            \quad \text{as}\ t \to \infty
+            $$
+            Here is a second way, which we could use if we hadn't done Sheet 3. I first claim that for each $i \in \{ 1,2,3 \}$, we have $\text{Prob}(X_t = 3\, | \, X_t = i) \to 1$ as $t \to \infty$\\
+            The state 3 is absorbing, so we have $\text{Prob}(X_t = 3\, | \, X_0 = 3) = 1$ for all $t \in \mathbb{N}$, so the claim is clear for $i = 3$.\\
+            Now let's do the case $i = 2$. Notice that
+            $$
+            \text{Prob}(X_t = 3\, | \, X_0 = 2) = 1-2^{-t} \quad \forall t \in \mathbb{N}.
+            $$
+            Indeed, if we start at state $2$, we can only ever go to state $2$ or state $3$ and we can only be at state $2$ at time $t$ if we looped around from state $2$ to state $2$ at each of the $t$ steps; this has probability $(\frac{1}{2})^t = 2^{-t}$.\\
+            Hence, the probability that we have been absorbed in state 3 by time $t$, is $1-2^{-t}$. Hence,
+            $$
+            \text{Prob}(X_t = 3\, | \, X_0 = 2) =1 - 2^{-t} \to 1 \quad \text{as}\ t \to \infty.
+            $$
+            Finally, let's do the case $i = 1$. We have
+            $$
+            \text{Prob}(X_t = 1\, | \, X_0 = 1) = 2^{-t},
+            $$
+            as the only way we can be in state $1$ at time $t$ is if we looped around from state $1$ to state $1$ at each of the $t$ steps up to time $t$. We have
+            $$
+            \text{Prob}(X_t = 2\, | \, X_0 = 1) = t2^{-t},
+            $$
+            since the only way we can be in state $2$ at time $t$ is if we looped around from state $1$ to state $1\ k$ times, and then jumped to state $2$ at time $k$, and then looped around from state $2$ to state $2$ for the remaining $t - k - 1$ steps (for some integer $k \in \{0, 1, 2, \ldots, t - 1\})$. This has probability
+            $$
+            \sum_{k=0}^{t-1}\left(\frac{1}{2}\right)^k\left(\frac{1}{2}\right)\left(\frac{1}{2}\right)^{t-k-1}
+            =
+            \sum_{k=0}^{t-1}\left(\frac{1}{2}\right)^t
+            =
+            t2^{-t},
+            $$
+            so 
+            $$
+            \text{Prob}(X_t = 2\, | \, X_0 = 1) = t2^{-t}
+            $$
+            Therefore,
+            \begin{align*}
+                \text{Prob}(X_t = 3\, | \, X_0 = 1)
+                &= 1 - \text{Prob}(X_t = 1\, | \, X_0 = 1)-\text{Prob}(X_t = 2\, | \, X_0 = 1)\\
+                &= 1-2^{-t} - t2^{-t}\\
+                &\to 1 \quad \text{as}\ t \to \infty
+            \end{align*}
+            This completes the proof of the claim.\\
+            Our claim shows that if $\mu^{(0)} \in \{(1,0,0),(0,1,0),(0,0,1)\}$, then $\mu^t \to (0,0,1)$ as $t \to \infty$. Since any starting distribution $\mu^{(0)}$ is a linear combination of the three starting distributions $(1, 0, 0), (0, 1, 0), (0, O, 1)$, we have $\mu^{(t)}\to (0,0,1)$ for any starting $distribution$ $\mu^{(0)}$. (This is a general fact: if we know that $\mu \to w$ whatever state we start in, then we know that $\mu^{(t)} \to w$ for any starting $distribution$ $\mu^{(0)}$. It follows that $(0, 0, 1)$ is a limiting distribution.
+            \item The chain is not irreducible (we cannot get from state $2$ to state $1$, for example). So it is not regular. Solving the usual equations we see that there is a unique invariant distribution $w = (0,1,0)$. In this case,
+            $$
+            \mu^{(t)}
+            =
+            \begin{cases}
+                (0,1,0), & \text{if $t$ is even};\\
+                (0,0,1), & \text{if $t$ is odd}. 
+            \end{cases}
+            $$
+            So $\mu^{(t)}$ does not converge. Hence, this MC has no limiting distribution.
+            \item The Markov chain is irreducible: the states can be visited in the order. $1\to 2 \to 3 \to 4 \to 1$. It may be checked that the unique invariant distribution is the uniform distribution $w = (\frac{1}{4}, \frac{1}{4},\frac{1}{4},\frac{1}{4})$. (Again, just solve the system of linear equations, $wP = w$ and $\sum_{i=1}^4w_i = 1.)$ However, there is no limiting distribution, as can be seen from considering the initial distribution $\mu^{(0)}=(\frac{1}{2},0,\frac{1}{2},0)$. In this case,
+            $$
+            \mu^{(t)}
+            =
+            \begin{cases}
+                (\frac{1}{2},0,\frac{1}{2},0), \text{if $t$ is even};\\
+                (0,\frac{1}{2},0,\frac{1}{2}), \text{if $t$ is odd}.
+            \end{cases}
+            $$
+            It follows that the chain cannot be regular.
+        \end{enumerate}
+        \textbf{Remarks} Notice that a Markov chain can have a limiting distribution without being regular and it can have a unique invariant distribution without being irreducible. It is even possible for a limiting distribution to exist without the chain being irreducible. Also it is possible for there to be no limiting distribution but for $P^t$ to tend to a limit. (For a limiting distribution we require that all rows of the limit-matrix are equal.) Parts (a)-(e) illustrate the full range of possibilities.
+        \item 
+        \begin{enumerate}
+            \item Since the chain is irreducible, we know that for any pair $(a,b)$ with $a,b \in S$,  there exists an integer $k$ with $p_{ab}^{(k)}>0$. Let $m$ be the maximum of all of these $k$'s. (This maximum $m$ is finite, since there are only finitely many pairs $(a,b)$ with $a,b \in S$; in fact, there are $|S|^2$ of these pairs.)\\
+            It follows from the definition of $m$ that given any pair $(a,b)$ with $a,b \in S$, we have that $p_{a.i}^{(a)}>0$ for some integer $s$ with $s \leq m$, and $p_{i,b}^{(t)}>0$ for some integer $t$ with $t \leq m$. Now $2m-s-t \geq 0$ and $p_{ab}^{)2m} \geq p_{ai}^{(a)}p_{ii}^{(2m-s-t)}p_{ib}^{(t)}>0$. Hence, for any pair $(a,b)$ with $a,b \in S$. there is a positive probability that we will move from $a$ to $b$ in $2m$ steps (or equivalently all the entries of $P^{2m}$ are possible) and so the chain is regular.
+            \item The result is no longer true for infinite $S$. Consider the Markov chain with $S = \mathbb{Z}$ and $p_{i,i} = p_{i,i+1}=p_{i,i-1}=1/3$ for all $i\in \mathbb{Z}$ and all other transition probabilies $0$. This is irreducible but given any $k$ we have that $p_{0,k+1}^{(k)} = 0$ and so it is not regular. (The part of the proof above which fails here is that we cannot necessarily take the maximum of an infinite set of $k$'s.)
+        \end{enumerate}
+        \item 
+        \begin{enumerate}
+            \item If $p = 0$ then the MC is not irreducible. $p_{i,3} = 0$ for all $i$, and hence $p_{1,3}^{(t)} = \sum_{i=1}^4p_{1,i}^{(t-1)}p_{i,3}^{(1)} = 0$ for all $t \in \mathbb{N}$. (There is no path of any length from state 1 to state 3 in the transition graph.)\\
+            If $0 < p \leq \frac{1}{2}$ then the MC is irreducible. $p_{2,1}^{(2)} \geq p_{2,4}p_{4,1}>0,\ p_{3,1}^{(2)} \geq p_{3,4}p_{4,1} > 0$ and $p_{4,1} > 0$. (So wc can get to state 1 from anywhere.) Also $p_{1,2} > 0$, $p_{1,3} > 0$ and $p_{1,4}^{(2)} \geq p_{1,2}p_{2,4} > 0$. (So wc can get from state 1 to anywhere.) Summarising, for any $i,j \in S$, there is an integer $t \ leq 4$ such that $p_{i,j}^{(t)} > 0$.
+            \item If $p = 0$ the MC is not irreducible and hence not regular. If $p = \frac{1}{2}$, then the MC is not regular. Consider the initial distribution $\mu^{(0)} = (1, 0, 0, 0)$. Then $\mu^{(3)}= \mu^{(0)}P^3 = (1,0,0,0) = \mu^{(0)}$. Iterating, $\mu^{(3s)} = (1,0,0,0)$ for all $s \in \mathbb{N}$. However,
+            $$
+            \mu^{(3s+1)} = (1,0,0,0)P^{(3s)}P = (1,0,0,0)P = (0,\frac{1}{2},\frac{1}{2},0).
+            $$
+            Thus, $\mu^{(t)}$ does not converge as $t \to \infty$.\\
+            If $0 < p < \frac{1}{2}$ then the MC is regular. Looking at the pattern of zero entries in powers of $P$ (+ indicates a non-zero entry):
+            \begin{align*}
+                P
+                =
+                \begin{pmatrix}
+                    0 & + & + & + \\
+                    0 & 0 & 0 & + \\
+                    0 & 0 & 0 & + \\
+                    + & 0 & 0 & 0 
+                \end{pmatrix}
+                %
+                \quad
+                P^2
+                =
+                \begin{pmatrix}
+                    + & 0 & 0 & + \\
+                    + & 0 & 0 & 0 \\
+                    + & 0 & 0 & 0 \\
+                    0 & + & + & + 
+                \end{pmatrix}\\
+                %
+                P^4
+                =
+                \begin{pmatrix}
+                    + & + & + & + \\
+                    + & 0 & 0 & + \\
+                    + & 0 & 0 & + \\
+                    + & + & + & + 
+                \end{pmatrix}
+                %
+                \quad
+                P^5
+                =
+                \begin{pmatrix}
+                    + & + & + & + \\
+                    + & + & + & + \\
+                    + & + & + & + \\
+                    + & + & + & + 
+                \end{pmatrix}
+            \end{align*}
+            %
+            \item  Since the chain is regular, it has a limiting distribution $w$. Moreover $w$ is the unique invariant distribution, so it is the unique solution to the equations $(wP = w,\ \sum_{i=1}^4w_i=1$. We Therefore solve
+            $$
+            (w_1, w_2, w_3, w_4)
+            =
+            \begin{pmatrix}
+                0 & \frac{1}{2} & p & \frac{1}{2} - p\\
+                0 & 0 & 0 & 1\\
+                0 & 0 & 0 & 1\\
+                1 & 0 & 0 & 0\\
+            \end{pmatrix}
+            =
+            (w_1, w_2, w_3, w_4)
+            $$
+            subject to $w_1+w_2+w_3+w_4 = 1$. We get
+            $$
+            (w_1, w_2, w_3, w_4)
+            =
+            \left(\frac{2}{2p+5}, \frac{1}{2p+5}, \frac{2p}{2p+5}, \frac{2}{2p+5}\right).
+            $$
+            \item This is the case $p = \frac{1}{2}$. A Byproduct of (b) is that $\mu^{(3s+1)} = (0,\frac{1}{2}, \frac{1}{2},0)$ assuming that $\mu^{(0)} = (1, 0, 0, 0)$. Thus $\text{Pr}(X_{3s+1} = 1\, | \, X_0=1) = 0$.\\
+            Now set $s = 330$ to get $\text{Pr}(X_{1000} = 1\, | \, X_0 = 1) = 0$.
+        \end{enumerate}
+        \item If $P$ is an $n \times n$ matrix then
+        \begin{align*}
+            \left(\frac{1}{n},\frac{1}{n},\ldots, \frac{1}{n}\right)
+            \begin{pmatrix}
+                p_{11} & \cdots & p_{1n}\\
+                \vdots & &\vdots\\
+                p_{n1} & \cdots & p_{nn}
+            \end{pmatrix}
+            &= \left(\frac{1}{n}\sum_{i=1}^n p_{i1},\frac{1}{n}\sum_{i=1}^n p_{i2},\ldots, \frac{1}{n}\sum_{i=1}^n p_{in}\right)\\
+            &= \left(\frac{1}{n}\sum_{i=1}^n p_{1i},\frac{1}{n}\sum_{i=1}^n p_{2i},\ldots, \frac{1}{n}\sum_{i=1}^n p_{ni}\right)\\
+            &= \left(\frac{1}{n},\frac{1}{n},\ldots, \frac{1}{n}\right),
+        \end{align*}
+        where the second equality is by symmetry, and the third follows from the fact that $P$ has all its row sums equal to $1$. Thus the uniform distribution $w = \left(\frac{1}{n},\ldots, \frac{1}{n}\right)$ does satisfy $wP = w$, and is an invariant distribution.
+        \item
+        \begin{enumerate}
+            \item  Let $X_t$ be the number of bulbs which are 'on' after $t$ minutes. Then $(X_0, X_l,X_2, \ldots )$ is a Markov chain with state space $\{ 0, 1, 2, 3, 4, 5 \}$ and tran- sition matrix
+            $$
+            P
+            =
+            \begin{pmatrix}
+                0 & 1 & 0 & 0 & 0 & 0\\
+                1/5 & 0 & 4/5 & 0 & 0 & 0\\
+                0 & 2/5 & 0 & 3/5 & 0 & 0\\
+                0 & 0 & 3/5 & 0 & 2/5 & 0\\
+                0 & 0 & 0 & 4/5 & 0 & 1/5\\
+                0 & 0 & 0 & 0 & 1 & 0
+            \end{pmatrix}
+            .
+            $$
+            (Here, the rows and columns are indexed by $\{O, I, 2, 3, 4, 5\}$.)
+            \item I claim that this Markov chain has no limiting distribution. To prove this, note that if an even number of light bulbs are on at time $t$, then an odd number of light bulbs are on at time $t + 1$, and if an odd number of light bulbs are on at time $t$, then an even number of light bulbs are on at time $t + 1$. Therefore, if we start in state $0$ (no bulbs are on at time $O$), then with probability $1$, the number of bulbs which are on at time $t$ is even if $t$ is even, and odd if $t$ is odd. Therefore,
+            $$
+            \sum_{j\ \text{even}}(P^t)_{0,j} = 1
+            $$
+            if t is even, and
+            $$
+            \sum_{j\ \text{even}}(P^t)_{0,j} = 0
+            $$
+            if $t$ is odd. It follows that $P^t$ does not converge, so the Markov chain has no limiting distribution.
+            \item  The Markov chain is clearly irreducible, as for any pair of states $i, j$,it can go from state $i$ to state $j$ in $|j - i|$ steps. ($j-i$ light bulbs can be turned on if $j>i$, and $i-j$ light bulbs can be turned off if $i>j$.) Therefore, by a theorem in the notes, it has a unique invariant distribution, $w$ say, and this is the solution to
+            $$
+            (w_0, w_1, w_2, w_3, w_4, w_5)P = (w_0, w_1, w_2, w_3, w_4, w_5),\quad \sum_{i = 0}^5 w_i =1.
+            $$
+            Rewritting the matrix equation gives
+            \begin{align*}
+                \frac{1}{5}w_1 & =w_0\\
+                w_0 + \frac{2}{5}w_2 &= w_1\\
+                \frac{4}{5}w_1 + \frac{3}{5}w_3 &= w_2\\
+                \frac{3}{5}w_2 + \frac{4}{5}w_4 &= w_3\\
+                \frac{2}{5}w_3 + w_5 &= w_4\\
+                \frac{1}{5}w_5 &= w_6
+            \end{align*}
+            Solving these by repeated substitution gives $w_1 = 5w_0,\ w_2 = 10w_0,\ w_3 = 10w_0,\ w_4 = 5w_0,\ w_5 = w_0$. Since $\sum_{i=0}^5w_i = 5$, we must have
+            $$(1 + 5 + 10 + 10 + 5 + 1)w_0 = 1,$$
+            so $w_0 = 1/32$, so 
+            $$w = \left(\frac{1}{32}, \frac{5}{32}, \frac{10}{32}, \frac{10}{32}, \frac{5}{32},\frac{1}{32}\right).$$
+            \item Recall that, if a Markov chain with a finite state-space is irreducible, then the proportion of time spent in state $i$ between time $0$ and time $t$ converges to $w_i$ as $t \to \infty$, regardless of the initial state. It follows that the answer to the question is $w_0 = 1/32$.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

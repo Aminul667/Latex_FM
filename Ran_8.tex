@@ -1,0 +1,102 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{hyperref}
+\usepackage{amsthm}
+
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+
+\begin{document}
+    \section*{MTH6141 Random Processes, 2018, Exercise Sheet 7}
+    Please drop your answers in the Random Processes coursework box by 5pm on Thursday 22nd March. You are advised to attempt all questions, and a minimum of Questions 3, 4 and 5.\\
+    Please send comments and corrections to \href{d.ellis@qmul.ac.uk}{d.ellis@qmul.ac.uk}.
+    %
+    \begin{enumerate}
+        \item (Some revision of Probability Models.)\par
+        Recall that a discrete random variable $R$ (taking values in $\mathbb{N} \cup \{0\}$ is said to have the Poisson distribution with parameter $\lambda$ if
+        $$\text{Prob}(R = k) = e^{-\lambda}\, \frac{\lambda^k}{k!} \quad \forall k \in \mathbb{N}\cup \{0\}.$$
+        If $R$ has the Poisson distribution with parameter $\lambda$, then we write $R \sim \text{Po}(\lambda)$. Recall that a continuous random variable $S$ (taking values in $R_{\geq 0} = \{x \in \mathbb{R} : x \geq 0\}$) is said to have the Exponential distribution with parameter $\lambda$ if the probability density function $f_S$ of $S$ satisfies
+        $$
+        f_s(t)
+        =
+        \begin{cases}
+            \lambda e^{-\lambda t} & \text{if}\ t\geq 0;\\
+            0 & \text{if}\ t<0,
+        \end{cases}
+        $$
+        or equivalently, if the cumulative distribution function $F_S(t) = \text{Prob}(S \geq t)$ satisfies
+        $$
+        f_s(t)
+        =
+        \begin{cases}
+            1 - e^{-\lambda t} & \text{if}\ t \geq 0;\\
+            0 & \text{if}\ t<0.
+        \end{cases}
+        $$
+        %
+        \begin{enumerate}
+            \item Suppose that $A$ has a $\text{Po}(\lambda)$ and $B$ a $\text{Po}(\mu)$ distribution, and $A$ and $B$ are independent random variables. Show that $A + B$ has a $\text{Po}(\lambda + \mu)$ distribution.
+            \item Suppose that $A$ has a $\text{Po}(\lambda)$ distribution. Show that $\mathbb{E}[A] = \lambda$.
+            \item Suppose that $T$ has an $\text{Exp}(\lambda)$ distribution. Show that, for all $s, t \geq 0$,
+            $$\mathbb{P}(T > s + t\, |\, T > s) = \mathbb{P}(T > t).$$
+            (This is sometimes described as the ‘memoryless property of the Exponential distribution’.)
+            \item  Suppose that $T$ has an $\text{Exp}(\lambda)$ distribution. Show that $\mathbb{E}[T] = \frac{1}{\lambda}$.
+            \item Consider the following experiment, where $\lambda > 0$ and $0 < p \leq 1$ are fixed real numbers. A number $X$ of balls are placed on a table, where $X$ is a random variable distributed as $\text{Po}(\lambda)$. For each ball in turn, independently, I throw it away with probability $p$, or I keep it on the table with probability $1 − p$. Let the random variable $Y$ be the number of balls remaining on the table.\\
+            Show that $Y$ is distributed as $\text{Po}((1 − p)\lambda)$.
+        \end{enumerate}
+        \item  Let $(X(t) : t \geq 0)$ be a Poisson process with rate $\lambda$. Define the random variable $T_1$ by
+        $$T_1 = min\{t \geq 0 : X(t) > 0\}.$$
+        The random variable $T_1$ is called the first arrival time of the process. Show that the random variable $T_1$ has the Exponential distribution with parameter $\lambda$. (Hint: calculate the cumulative distribution function $F_{T_1}(t)$.)
+        \item  Buses arrive at a bus stop according to a Poisson process of rate $8$ per hour (i.e., $2/15$ per minute). I arrive at the bus stop and I take the first bus that arrives.
+        %
+        \begin{enumerate}
+            \item What is the probability that my waiting time is less than $5$ minutes?
+            \item What is the probability that my waiting time is between $5$ and $10$ minutes?
+            \item What is the conditional probability that my waiting time is less than $20$ minutes, given that no buses arrive in the first 10 minutes?\par
+            (Your answers should be expressed in terms of powers of $e$, but simplified as much as possible in all other ways. Briefly explain your answers with reference to the properties of the Poisson process. You can use Q2 if you like, but it is not necessary to use Q2.)            
+        \end{enumerate}
+        \item Customers enter a shop according to a Poisson process with rate $\frac{1}{5}$ per
+        minute. Let $C(t)$ be the number of customers who have entered the shop after it has been open for $t$ minutes.
+        %
+        \begin{enumerate}
+            \item Calculate the following:
+            %
+            \begin{enumerate}
+                \item  $\text{Prob}(C(20) = 3)$,
+                \item $\text{Prob}(C(20) = 3\, |\, C(10) = 1)$,
+                \item $\text{Prob}(C(10) = 1, C(20) = 3)$,
+                \item $\text{Prob}(C(20) = 1\, |\, C(10) = 3)$,
+                \item $\text{Prob}(C(10) = 1\, |\, C(20) = 3)$.
+            \end{enumerate}
+            (Your answers should be expressed in terms of powers of $e$, where necessary but simplified as much as possible in all other ways. Briefly explain your answers with reference to the properties of the Poisson process.)
+            \item What is the probability that the second customer arrives within the first $15$ minutes? (Again, simplify, but leave your answers in terms of powers of $e$ where necessary.)
+            \item Suppose that each customer who enters the shop, has forgotten their money with probability $\frac{1}{6}$, independently of all the other customers. Find the probability that after one hour, exactly $10$ customers with money have entered the shop.
+            \item Suppose that each customer spends exactly $10$ minutes in the shop. Find the distribution of the number of customers in the shop after it has been open for $1$ hour. Explain your reasoning.
+            \item Divide an hour into $30$ “even” minutes $0, 2, 4, \ldots , 58$ and $30$ “odd” minutes $1, 3, 5, \ldots ,$ $59$. Find the distribution of the number of customers who arrive during the even minutes on a given hour. (Hint: recall Q1(a).)
+        \end{enumerate}
+        \item Recall the ‘Superposition Lemma’ from the lectures: “Let $(X(t) : t \geq 0)$ be a Poisson process with rate $\lambda$, and let ($Y (t) : t \geq 0$) be a Poisson processes with rate $\mu$. Suppose that these two Poisson processes are independent of one another. Then the stochastic process ($X(t) + Y (t) : t \geq 0$) is a Poisson process with rate $\lambda + \mu$.”
+        \begin{enumerate}
+            \item Prove the Superposition Lemma using the definition of the Poisson process (Hint: look at Q1(a).)
+            \item  Prove the ‘Thinning Lemma’ using the definition of the Poisson process. (Hint: look at Q1(e).)  
+            \item At Stepney Green underground station, the arrival of Hammersmith and City Line trains forms a Poisson process of rate $6$ per hour and the arrival of District Line trains forms a Poisson process of rate $14$ per hour. These processes are independent of one another. I arrive at the station, intending to take the first train of either kind. What is the expected time that I have to wait until the arrival of a train of either kind? After five minutes, no train has arrived and I am still on the platform. What is the probability that a train will arrive in the next five minutes?
+            \item Suppose that each train is full independently with probability $1/10$. What is the expected time I have to wait until the arrival of a train \textit{which is not full}?
+        \end{enumerate} 
+    \end{enumerate}
+
+\end{document}

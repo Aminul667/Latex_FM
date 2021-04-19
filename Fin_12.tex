@@ -1,0 +1,143 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 8 - Solutions
+    \end{center}
+    %
+    \textbf{Exercise 1.}
+    \begin{enumerate}[(a)]
+        \item The yield curve is given by
+        $$
+        \bar{r}(t)
+        =
+        \frac{1}{t}\int_0^t r(u)\, du 
+        =
+        \frac{1}{t}\int_0^t r_0u^\alpha\, du 
+        =
+        \frac{1}{t}\left[\frac{r_0}{\alpha + 1}u^{\alpha + 1}\right]_{u=0}^{u=\alpha}
+        =
+        \frac{r_0}{\alpha+1}t^\alpha,
+        $$
+        and the present value function is given by
+        $$
+        B(T)
+        =
+        \text{exp}(-T\bar{r}(T))
+        =
+        \text{exp}\left(-\frac{r_0}{\alpha+1}T^{\alpha+1}\right).
+        $$
+        \item Suppose that $\alpha = 0.01$ and $r_0 = 4\%$. The present value of your landlord’s repayment is
+        $$
+        1000\,\text{exp}(-2\bar{r}(2))
+        =
+        1000\,\text{exp}\left(-\frac{r_0}{\alpha+1}2^{\alpha+1}\right)
+        =
+        923.34
+        $$
+        pounds. Thus the present value of your landlords profit is $1000 − 923.34 = 76.66$ pounds and the value of your landlord’s profit in two years’ time is
+        $$
+        76.66\,\text{exp}\, (2\bar{r}(2))
+        =
+        76.66\,\text{exp}\left(\frac{r_0}{\alpha+1}2^{\alpha+1}\right)
+        =
+        3.02
+        $$
+        pounds.
+    \end{enumerate}
+    %
+    \textbf{Exercise 2.}
+    \begin{enumerate}[(a)]
+        \item We need to distinguish two cases. For $t$ with $0 \leq t \leq 1$ we have
+        $$
+        \bar{r}(t)
+        = \frac{1}{t}\int_0^t au\, du
+        = \frac{1}{t}\left[\frac{a}{2}u^2\right]_0^t
+        = \frac{1}{t}\frac{a}{2}t^2
+        = \frac{a}{2}t\ ,
+        $$
+        while for $t$ with $t > 1$ we have
+        $$
+        \bar{r}(t)
+        = \frac{1}{t}\left(\int_0^1 au\, du+\int_1^t a\, du\right)
+        = \frac{1}{t}\left(\left[\frac{a}{2}u^2\right]_0^1+\left[au\right]_1^t\right)
+        = \frac{1}{t}\left(\frac{a}{2}+at-a\right)
+        = a\left(1- \frac{1}{2t}\right)\, .
+        $$
+        Thus
+        $$
+        \bar{r}(t)
+        =
+        \begin{cases}
+            \frac{a}{2}t & \text{if}\ 0 \leq t \leq 1,\\
+            a\left(1-\frac{1}{2t}\right) & \text{if}\ t>1.
+        \end{cases}
+        $$
+        \item  We have
+        $$
+        \lim_{t \to \infty}\bar{r}(t)
+        = \lim_{t \to \infty}a\left(1 - \frac{1}{2t}\right)
+        = a.
+        $$
+        \item If you put $2000$ pounds in the bank today, at time $t = 4$ you will have
+        $$
+        P(4)
+        = 2000\, \text{exp}(4\bar{r}(4))
+        = 2000\, \text{exp}\left(4a\left(1-\frac{1}{8}\right)\right)
+        = 2000\, \text{exp}\left(\frac{7}{2}a\right)
+        $$
+        pounds in the bank.
+    \end{enumerate}
+    \textbf{Exercise 3.} Suppose that the ZCB costs $x$ at time $t = 0$ and assume that the time $t$ is measured in years. We consider two strategies:\par 
+    In the first strategy we buy the ZCB at $t = 0$ (we pay $x$) and therefore receive $\pounds 1, 000$ at $t = 2$ when the ZCB matures.\par 
+    In the second strategy, we invest the amount
+    $$
+    \pounds e^{-0.02 \cdot 2 } 1,000
+    = \pounds 960.79
+    $$
+    in the bank for $2$ years and therefore have $\pounds 1, 000$ at $t = 2$ in our bank account.\par 
+    The two strategies have equal payoffs at time $t = 2$, therefore the present value of the payoffs of both strategies is the same. Therefore, by using the Law of One Price, the two strategies must cost the same at time $t = 0$. In conclusion, we have $x = \pounds 960.79$.\par 
+    \textbf{Exercise* 4.}
+    \begin{enumerate}[(a)]
+        \item If $S < De^{-rt}$ an arbitrage opportunity arises as follows. Buy the share at time $0$, which you finance by borrowing $S$ from a bank. Therefore, you start with a zero cost or profit. At time $t$, your debt to the bank is $Se^{rt}$, , but the share pays dividends $D$, so you make a profit of $D-Se^{rt}$, which is positive by assumption.
+        \item We first observe that the \underline{present value of the payoffs} of both investments is the same. In order to see this, note that the \textbf{first investment} results in having $F+De^{r(T-t)}$ in the bank account at time $T$. Now using the forward contract, you buy the share, at time $T$, by paying $F$ and you own the share. In total, your payoff is $De^{r(T-t)}+S(T)$. The \textbf{second investment} also results in owning the share (since you bought it at time 0) and having $De^{r(T-t)}$ in the bank account at time $T$ (from the investment of dividends at time $t$). In total, your payoff is $De^{r(T-t)}+S(T)$.\par 
+        Next we observe that the \underline{cost of the \textbf{first investment}} is $Fe^{-rT}+De^{-rt}$,\\
+        while the \underline{cost of the \textbf{second investment}} is $S$.\\
+        Thus, by the Law of One Price (since the present value of the payoffs of both investments is the same), either
+        $$
+        Fe^{-rT}+De^{-rt}=S
+        $$
+        or there exists an arbitrage opportunity. In other words, either
+        $$
+        F = Se^{rT}+De^{r(T-t)}
+        $$
+        or there exists an arbitrage opportunity, as required.\\
+        Note that $F$ is non-negative $(F \geq 0)$ due to (a), where it was proved that $S \geq D e^{−rt}$ holds under no-arbitrage.
+    \end{enumerate}
+
+    
+\end{document}

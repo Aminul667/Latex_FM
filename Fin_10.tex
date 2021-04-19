@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 7 — Solutions
+    \end{center}
+    %
+    \textbf{Exercise 1.} In order to take into account inflation, we use the inflation adjusted interest rate $r_a = 5.5\% − 4\% = 1.5\%$. Write
+    $$ \beta = \frac{1}{1+r_a} = \frac{1}{1.015} = 0.985222. $$
+    The present value of the salaries from job with company A is
+    $$ 32000\beta + 33000\beta^2 + 36000\beta^3 = 97986.34 ,$$
+    while the present value of the salaries from job with company B is
+    $$6000 + 31000\beta + 31000\beta^2 + 31000\beta^3 = 96278.21 .$$
+    The job with company A has a higher present value and is therefore a better deal.\par
+    %
+    \textbf{Exercise* 2.} 
+    \begin{enumerate}[(a)]
+        \item By definition, the internal rate of return of this investment is the unique solution $r$ of the equation
+        $$
+        1000 = \frac{0}{1+r} + \frac{500}{(1+r)^2} + \frac{0}{(1+r)^3} + \frac{750}{(1+r)^4}
+        $$
+        in the range $(−1,\infty)$. Using the substitution $x = (1 + r)^2$, the above equation yields
+        $$
+        1000 = \frac{500}{x} + \frac{750}{x^2},
+        $$
+        so
+        $$
+        x^2-\frac{1}{2}x-\frac{3}{4} = 0.
+        $$
+        Thus
+        $$
+        x = \frac{1}{4}(1 \pm \sqrt{13}),
+        $$
+        from which we choose only
+        $$
+        x = \frac{1}{4}(1 + \sqrt{13}),
+        $$
+        since $x > 0$, and so
+        $$
+        r = \sqrt{x} - 1 = \frac{1}{2}\sqrt{1+\sqrt{13}}-1 = 0.073.
+        $$
+        Thus the rate of return is $7.3\%$.
+        %
+        \item The capital gain of this investment is $500 + 750−1000 = 250$, and the corresponding amount of tax is $250 \cdot 0.18 = 45$. Thus the final payment will be 
+        $750 − 45 = 705$. Thus, the internal rate of return of this investment in the presence of capital gains tax is the unique solution $r$ of the equation
+        $$
+        1000 = \frac{0}{(1+r)} + \frac{500}{(1+r)^2}+\frac{0}{(1+r)^3}+\frac{750}{(1+r)^4}
+        $$
+        in the range $(−1,\infty)$. Using the substitution $x = (1 + r)^2$, the above equation yields
+        $$
+        1000 = \frac{500}{x} + \frac{750}{x^2},
+        $$
+        so
+        $$
+        x^2 - \frac{1}{2}x - \frac{141}{200} = 0. 
+        $$
+        Thus
+        $$
+        x = \frac{1}{4} + \frac{1}{20}\sqrt{307},
+        $$
+        since $x > 0$, and so
+        $$
+        r = \sqrt{x}-1=\sqrt{\frac{1}{4}+\frac{1}{20}\sqrt{307}}-1 = 0.0611\ldots
+        $$
+        Thus the rate of return is $6.1\%$ in this case
+    \end{enumerate}
+    %
+    \textbf{Exercise* 3.}
+    \begin{enumerate}[(a)]
+        \item The graph of $r(t)$ is piecewise linear. See Addition to Solution $7$ for the sketch of the graph for $a = 0.6$.
+        \item The present value $P(0)$ of $P(3) = \pounds 2, 000$ to be received in $3$ years time is given by
+        
+        \begin{align*}
+            P(0) 
+            &= \text{exp}\, \left(-\int_0^3 r(u)\, du \right)P(3)\\
+            &= \text{exp}\, \left(-\int_0^1 au\, du - \int_1^3 a\, du\right)2000\\
+            &= \text{exp}\, \left(-\left[\frac{a}{2}u^2\right]_0^1-\left[au\right]_1^3\right)2000\\
+            &= \text{exp}\, \left(-\frac{a}{2}-2a\right)2000\\
+            &= \text{exp}\, \left(-\frac{5}{2}a\right)2000.
+        \end{align*}
+
+    \end{enumerate}
+\end{document}

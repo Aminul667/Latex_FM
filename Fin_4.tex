@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+\usepackage{breqn}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+\begin{center}
+	\LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+	Coursework 4 — Solutions
+\end{center}
+\textbf{Exercise 1.} Let $S(n)$ denote the price of a one bedroom flat in central London, where $n$ is measured in months. We know that $S(n)$ is given by an IID lognormal model with $\mu = 0.02$ and $\sigma = 0.11$. By a lemma proved in the lectures (Lemma $1.52$ in the online lecture notes) we know that $$\frac{S(n)}{S(0)}\sim LogNormal(n\mu, n\sigma^2).\quad \text{(Stating this is not enough - Explain it in detail!)}$$
+\begin{enumerate}[(a)]
+    \item The desired probability is $$\mathbb{P}(S(12)<S(0))=\mathbb{P}\left(\frac{S(12)}{S(0)}<1\right) = \mathbb{P}\left(\log \frac{S(12)}{S(0)}<0\right),$$ where $$\log \frac{S(12)}{S(0)}\sim \mathcal{N}(12\mu, 12\sigma^2).$$ Therefore, we have $$\mathbb{P}(S(12)<S(0)) = \mathbb{P}\left(\log \frac{S(12)}{S(0)}<0\right) = \mathbb{P}\left(\frac{\log \frac{S(12)}{S(0)}-12\mu}{\sqrt{12}\sigma}<-\frac{12\mu}{\sqrt{12}\sigma}\right)$$ $$=\Phi\left(-\frac{\sqrt{12}\mu}{\sigma}\right)=1-\Phi\left(\frac{\sqrt{12}\mu}{\sigma}\right)=1-\Phi(0.63)=1-0.7356=0.2644,$$ which makes the probability of a one bedroom flat in central London being lower at the end of the first year than right now equal to $26\%$.
+    \item The desired probability is $\mathbb{P}(S(15) > S(3))$. But $$\mathbb{P}(S(15)>S(3))=\mathbb{P}\left(\frac{S(15)}{S(3)}>1\right) = \mathbb{P}\left(\log \frac{S(15)}{S(3)}>0\right).$$ Since the relative price changes from one month to the next are independent, we can assume that we start counting from the 3rd month (Stating this is not enough - Explain this in detail, using mathematical expressions). In other words, we can prove that $$\log \frac{S(15)}{S(3)} \quad \text{is identically distributed as} \quad \log \frac{S(12)}{S(0)}.$$ Using similar arguments as above (based on proof of Lemma 1.52), we hence know that $$\log \frac{S(15)}{S(3)}\sim \mathcal{N} (12\mu,12\sigma^2).$$ This implies that 
+    \begin{align*}
+        \mathbb{P}(S(15) > S(3)) &= \mathbb{P}\left(\log\frac{S(15)}{S(3)}>0\right)=\mathbb{P}\left(\log \frac{S(12)}{S(0)}>0\right)=1-\mathbb{P}\left(\log \frac{S(12)}{S(0)}<0\right)\\
+        &=0.7356
+    \end{align*}
+    where the last equality follows from part (a). Thus, the probability that the price is higher at the end of the 15th month than at the end of the 3rd month is $74\%$.
+    \item Since there are 60 months in $5$ years, the desired probability is $\mathbb{P}(S(60) > 2S(0))$. But $$\mathbb{P}(S(60) \geq 2S(0))= \mathbb{P}\left(\frac{S(60)}{S(0)}\geq 2\right)=\mathbb{P}\left(\log \frac{S(60)}{S(0)}\geq \log(2)\right),$$ where $$\log \frac{S(60)}{S(0)}\sim \mathcal{N}(60\mu, 60\sigma^2).\quad \text{(Explain this in detail)}$$ Thus
+    \begin{align*}
+        \mathbb{P}(S(60) \geq 2S(0)) &= \mathbb{P}\left(\log\frac{S(60)}{0}\geq \log(2)\right)=\mathbb{P}\left(\frac{\log \frac{S(60)}{S(0)}-60\mu}{\sqrt{60}\sigma}\geq \frac{\log 2-60\mu}{\sqrt{60}\sigma}\right)\\
+        &= 1-\Phi\left(\frac{\log 2-60\mu}{\sqrt{60}\sigma}\right) = 1 - \Phi(-0.96)=\Phi(0.59)=0.7224
+    \end{align*}
+    Thus, the probability that the price at least doubles after $5$ years is $72\%$.
+    \item Let $R(n)$ denote the price of a one bedroom flat in Brighton, where $n$ is measured in months. We know that $R(n)$ is given by an IID lognormal model with $\tilde{\mu} = 0.005$ and $\tilde{\sigma} = 0.15$.\par
+    Therefore, the desired probability is given by
+    \begin{align*}
+        \mathbb{P}(S(12) < R(12)| S(0) = R(0)) &= \mathbb{P}\left(\frac{S(12)}{S(0)}<\frac{R(12)}{S(0)}\,\middle|\, S(0)=R(0)\right)\\
+        &= \mathbb{P}\left(\frac{S(12)}{S(0)}<\frac{R(12)}{R(0)}\,\middle|\, S(0)=R(0)\right)\\
+        &= \mathbb{P}\left(\log \frac{S(12)}{S(0)}<\log \frac{R(12)}{R(0)}\right)
+    \end{align*}
+    where $$\log \frac{S(12)}{S(0)}\sim \mathcal{N}(12\mu,12\sigma^2)\quad \text{and}\quad \log \frac{R(12)}{R(0)}\sim\mathcal{N}(12\tilde{\mu},12\tilde{\sigma}^2)$$ and they are independent. Therefore, we have (see Lemma 1.42) $$X\,:=\log \frac{S(12)}{S(0)}-\log \frac{R(12)}{R(0)}\sim\mathcal{N}(12(\mu-\tilde{\mu}),12(\sigma^2+\tilde{\sigma}^2))\equiv \mathcal{N}(0.18,0.415)$$ Combining all the above we conclude that
+    \begin{align*}
+        \mathbb{P}\left(\log \frac{S(12)}{S(0)}<\log \frac{R(12)}{R(0)}\right)=\mathbb{P}(X<0) &= \mathbb{P}\left(\frac{X-0.18}{\sqrt{0.415}}<\frac{-0.18}{\sqrt{0.415}}\right)\\
+        &= \Phi(-0.28)=1-\Phi(0.28)=0.39
+    \end{align*}
+    Therefore, the probability that a one bedroom flat in Brighton is worth more than one in London in $1$ year’s time, given that they currently cost the same, is equal to $39\%$
+
+\end{enumerate}
+\textbf{Exercise 2.} In order to prove the Multiplicative Central Limit Theorem, we assume that $Y_1, Y_2, \ldots$ are independent identically distributed random variables taking only positive real values and satisfying $\mathbb{E}(\log Y_i) = \mu \ \text{and}\ \mathbb{V}ar(\log Y_i) = \sigma^2$, where $\mu \in \mathbb{R}$ and $\sigma > 0$. We need to show that $$\lim_{n\to\infty}\mathbb{P}\left(\left(\frac{Y_1Y_2\ldots Y_n}{e^{n\mu}}\right)^{\frac{1}{\sqrt{n}\sigma}}\leq y\right) = F_Y(y)\quad (\forall y > 0),$$ where $F_Y$ is the cumulative distribution function of $Y$ with $Y \sim LogNormal(0, 1)$.\par
+Write $X_i = \log Y_i$, for $i \in N$. Then $X_1, X_2,\ldots$ are independent identically distributed random variables with mean $\mathbb{E}(X_i) = \mu \ \text{and variance}\  \mathbb{V}ar(X_i) = \sigma^2$. Thus, since $Y_i = e^{X_i}$, we have for any $y \in \mathbb{R}$ that
+\begin{align*}
+    \lim_{n\to\infty}\mathbb{P}\left(\left(\frac{Y_1Y_2\ldots Y_n}{e^{n\mu}}\right)^{\frac{1}{\sqrt{n}\sigma}}\leq y\right) &= \lim_{n\to \infty}\mathbb{P}\left(\left(\frac{e^{X_1}e^{X_2}\ldots e^{X_n}}{e^{n\mu}}\right)^{\frac{1}{\sqrt{n}\sigma}} \leq y\right)\\
+    &= \lim_{n\to\infty}\mathbb{P}\left(e^{\frac{X_1+\ldots +X_n-n\mu}{\sqrt{n}\sigma}}\leq y\right)\\
+    &= \lim_{n\to\infty}\mathbb{P}\left(\frac{X_1+\ldots +X_n-n\mu}{\sqrt{n}\sigma}\leq \log y\right)\\
+    &= \Phi(\log y)
+\end{align*}
+by the ordinary Central Limit Theorem. We are finished, if we can show that $\Phi(\log y) = F_Y (y)$, where $Y \sim LogNormal(0, 1)$. This, however, is the case, since log $Y \sim \mathcal{N}(0, 1)$, so $$\Phi(\log y) = \mathbb{P}(\log Y \leq \log y) = \mathbb{P}(Y \leq y) = F_Y(y).$$\par
+\textbf{Exercise 3.} We start by observing that $$\log \prod_{i=1}^nY_i^{a_i}=\sum_{i=1}^na_i\log Y_i.$$ Since, by hypothesis, $Y_1, Y_2, \ldots$ are independent random variables with $\log Y_i \sim\mathcal{N}(\mu_i,\sigma_i^2)$, we see that $$\sum_{i=1}^na_i\log Y_i\sim\mathcal{N}\left(\sum_{i=1}^na_i\mu_i,\,\sum_{i=1}^na_i^2\sigma_i^2\right).$$ Thus in view of (1), we have that $$\prod_{i=1}^nY_i^{a_i}\sim LogNormal(m_n,s_n^2),$$ where $$m_n=\sum_{i=1}^na_i\mu_i \quad \text{and} \quad s_n^2=\sum_{i=1}^na_i^2\sigma_i^2.$$
+
+
+\end{document}

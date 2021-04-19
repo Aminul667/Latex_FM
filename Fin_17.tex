@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{0.5em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 11
+    \end{center}
+    %
+    You are not required to hand in solutions to exercises of Coursework 11.\par 
+    \textbf{Exercise 1.} Consider a call option on a share following the multiperiod binomial model with $n = 5$ periods. The current share price is $S = 100$ (at time 0), the strike price of the option is $K = Su^4d$ and its maturity time $T = 5$. Calculate $C$ when $u = 1.2,\ d = 0.8$ and the nominal interest rate is $r = 5\%$ per period.\par 
+    %
+    \textbf{Exercise 2.} Consider the no-arbitrage price $C$ of a call option in the multiperiod binomial model with strike price $\pounds 150$ and maturity time equal to $4$ time periods. Find $C$, if the initial share price is $\pounds 200$, the interest rate is $5\%$ per period, and the remaining model parameters are $u = 1.5$ and $d = 0.5$.\\
+    \hspace*{0.5cm}\underline{Hint:} \textsl{Use the fact that the risk-neutral probability of an upward movement is given by}
+    $$
+    p = \frac{1+r-d}{u-d}
+    $$
+    %
+    \textbf{Exercise 3.} The price of the $F$. Bancroft \& Sons stock follows a geometric Brownian motion with parameters $\mu = 0.15$ and $\sigma = 0.21$. Presently, the stock’s price is $\pounds 38$. Consider a call option having three months until its maturity time and having a strike price of $\pounds 41$.
+    \begin{enumerate}[(a)]
+        \item If the continuously compounded interest rate is $5\%$, what is the Black-Scholes price of thecall?
+        \item What is the probability that the call option will be exercised?
+    \end{enumerate}
+    %
+    \textbf{Exercise 4.} The share price $S(t)$ of your favourite company follows the risk-neutral geometric Brownian motion with volatility parameter $\sigma = 0.24$. The continuously compounded interest rate is $4\%$. Today one share is worth $\pounds 40$. You decide to test the things you learnt in MTH6121 and buy a call option with a strike price $\pounds 42$ and maturity time of $4$ months.
+    \begin{enumerate}[(a)]
+        \item What will you have to pay for this option?
+        \item What is the probability that you will exercise your call option in $4$ months’ time?
+        \item Suppose that instead of a call option you wanted to buy a put option on the same underlying share, maturity time and strike price. What will you have to pay for this put option?\\
+        \underline{Hine:} \textsl{Use the put-call parity.}
+        \item What is the probability that you will exercise your put option in $4$ months’ time?
+    \end{enumerate}
+\end{document}

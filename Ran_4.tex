@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+
+\usepackage{fontawesome}
+\DeclareUnicodeCharacter{2212}{-}
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\usepackage{hyperref}
+
+
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\newenvironment{psmallmatrix}
+  {\left(\begin{smallmatrix}}
+  {\end{smallmatrix}\right)}
+
+\begin{document}
+    \textbf{MTH6141 Random Processes, 2018, Exercise Sheet 3: Solutions}\par
+    Please send comments and corrections to \href{d.ellis@qmul.ac.uk}{d.ellis@qmul.ac.uk}d.ellis@qmul.ac.uk.
+    \begin{enumerate}
+        \item A Markov chain has transition matrix
+        $$
+        P
+        =
+        \begin{pmatrix}
+            \frac{1}{2} & \frac{1}{2} & 0\\
+            0 & \frac{1}{2} & \frac{1}{2}\\
+            0 & 0 & 1
+        \end{pmatrix}
+        $$
+        Show that for each $t \in \mathbb{N}$, we have
+        $$
+        P^t
+        =
+        \begin{pmatrix}
+            2^{-t} & t2^{-t} & 1-2^{-t}-t2^{-t}\\
+            0 & 2^{-t} & 1-2^{-t}\\
+            0 & 0 & 1
+        \end{pmatrix}
+        $$
+        Solution:\\
+        We can prove this by induction on $t$. It is clear for $t = 1$, by the definition of $t$. Suppose it holds for $t$. Then
+        \begin{align*}
+            P^{t+1} &= P^tP\\
+            &=
+            \begin{pmatrix}
+                2^{-t} & t2^{-t} & 1-2^{-t}-t2^{-t}\\
+                0 & 2^{-t} & 1-2^{-t}\\
+                0 & 0 & 1
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{1}{2} & \frac{1}{2} & 0\\
+                0 & \frac{1}{2} & \frac{1}{2}\\
+                0 & 0 & 1
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                2^{-(t+1)} & t2^{-(t+1)} + 2^{-(t+1)} & t2^{-(t+1)}+1-2^{-t}-t2^{-t}\\
+                0 & 2^{-(t+1)} & 2^{-(t+1)}+1-2^{-t}\\
+                0 & 0 & 1
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                2^{-(t+1)} & (t+1)2^{-(t+1)} & 1-2^{-(t+1)}-(t+1)2^{-(t+1)}\\
+                0 & 2^{-(t+1)} & 1-2^{-(t+1)}\\
+                0 & 0 & 1
+            \end{pmatrix}
+        \end{align*}
+        Hence, it holds for t + 1 as well. This completes the induction step.
+        \item Let $P$ be an $n$ by $n$ matrix.
+        \begin{enumerate}
+            \item Give the (necessary and sufficient) conditions under which $P$ is the transition matrix of some Markov chain.
+            \item Let $(X_0, X_1, X_2, X_3,\ldots)$ be a Markov chain with transition matrix $P$. Prove that for any positive integer $k$, $(X_0, X_k, X2k, X_{3k},\ldots)$ is also a Markov chain. What is its transition matrix?
+            \item  Let $t \in \mathbb{N}$. If $P$ has $n$ distinct complex eigenvalues $\lambda_1, \ldots , \lambda_n$ say, what are the eigenvalues of $P^t$? Justify your answer.            
+        \end{enumerate}
+        Solution:
+        \begin{enumerate}
+            \item $p_{i,j} \geq 0$ for all $i, j$, and $\sum_{j=1}^np_{i,j}=1$ for all $i$.
+            \item We have
+            \begin{align*}
+                & Prob(X_{(t+1)k} = j\,|\, X_{tk}=i, X_{(t-1)k}=i_{t-1}, X_{(t-2)k}=i_{t-2},\ldots,X_0=i_0)\\
+                & = Prob(X_{(t+1)k}=j\,|\, X_{tk}=i)
+            \end{align*}
+            for any $i, j, i_{t−1}, \ldots , i_0 \in S$. This is because the distribution of $X_{tk+1}$ is independent of $X_{tk−1}, X_{ti−2}, \ldots , X_1, X_0$, given the value of $X_{tk}$, and similarly the distribution of $X_{tk+2}$, of $X_{tk+3}, \ldots $, and of $X(t+1)k$, is independent of $X_{tk−1}, X_{tk−2}, \ldots , X_1, X_0$, given the value of $X_{tk}$.\par
+            The transition probabilities of the chain $(X_0, X_k, X_{2k}, \ldots)$ are just the $k$-step transition probabilities of the chain $(X_0, X_1, X_2, \ldots)$, so the transition matrix of the chain $(X_0, X_k, X_{2k}, \ldots)$ is $P^k$.
+            \item The eigenvalues of $P^t$ are $\lambda_1^t, \lambda_2^t,\ldots,\lambda_n^t$.To show this, note that if $v_i$ is a (column) eigenvector of P with eigenvalue $\lambda_i$, then $$P^t(v_i) = P^{t-1}(\lambda_iv_i)=\lambda_iP^{t-1}(v_i)=\ldots=\lambda_i^tv_i,$$ so $\lambda_i^t$ is an eigenvalue of $P^t$. Therefore, $\lambda_1^t, \lambda_2^t,\ldots,\lambda_n^t$ are all eigenvalues of $P^t$. Since $P^t$ is an $n\times n$ matrix, it cannot have more than $n$ distinct eigenvalues, so $\lambda_1^t,\lambda_2^t,\ldots,\lambda_n^t$ are the only eigenvalues of $P^t$.
+        \end{enumerate}
+        \item I play a game as follows. A bucket contains four red balls and three green balls. At each step, a ball is chosen at random from the bucket, with each of the balls there being equally likely to be chosen. If a red ball is chosen, it is removed from the bucket. If a green ball is chosen, it is returned to the bucket.The game continues until all of the four red balls have been removed from the bucket. What is the expected number of steps before the game ends?\par
+        Solution: we model this as a Markov chain $(X_0, X_1, X_2,\ldots)$ with state space $\{0, 1, 2, 3, 4\}$, where we are in state i if and only if the bucket contains $i$ red balls. (Note that the bucket always contains three green balls.)The state $0$ is an absorbing state, and indexing the rows and columns with $0, 1, 2, 3, 4$, the transition matrix is
+        $$
+        \begin{pmatrix}
+            1 & 0 & 0 & 0 & 0\\
+            \frac{1}{4} & \frac{3}{4} & 0 & 0 & 0\\
+            0 & \frac{2}{5} & \frac{3}{5} & 0 & 0\\
+            0 & 0 & \frac{3}{6} & \frac{3}{6} & 0\\
+            0 & 0 & 0 & \frac{4}{7} & \frac{3}{7}
+        \end{pmatrix}
+        $$
+        Let $T = min\{t : X_t = 0\}$ denote the total number of steps until absorption. For each $i \in \{0, 1, 2, 3, 4\}$, let $u_i = \mathbb{E}[T\,|\, X_0 = i]$. Then first-step analysis gives the equations
+        \begin{align*}
+            u_4 &= 1+\frac{3}{7}u_4+\frac{4}{7}u_3\\
+            u_3 &= 1+\frac{1}{2}u_3+\frac{1}{2}u_2\\
+            u_2 &= 1+\frac{3}{5}u_2+\frac{2}{5}u_1\\
+            u_1 &= 1+\frac{3}{4}u_1+\frac{1}{4}.0
+        \end{align*}
+        Solving these by back-substitution gives $u_1 = 4,\ u_2 = 13/2,\ u_3 = 17/2,\ u_4 = 41/4$. So the answer is $41/4 = 10\frac{1}{4}$
+        \item  A grasshopper jumps about at random between the corners of a triangle. If he is at one corner, he is equally likely to jump to either of the other two corners (but he never jumps straight up in the air and lands on the same on the same corner where he was before). For each positive integer $t$, find the probability that, after $t$ jumps, the grasshopper is back on the corner it started from.\par
+        Solution: number the corners $1,2,3$. Suppose the grasshopper starts at corner $1$. We model the situation as a $2$-state Markov chain with state-space $\{0, 1\}$; the state is $1$ if the grasshopper is at corner $1$, and the state is 0 otherwise. Then we have $p_{1,1} =0,\ p_{1,0} = 1\ \text{and}\ p_{0,1} = 1/2\ \text{and}\ p_{0,0} = 1/2$; this is the same situation as in the $2$-state Markov chain in the lectures, with $\alpha = 1\ \text{and}\ \beta = 1/2$. Using the formula from the lectures, we get
+        $$p^{(t)}_{1,1}=(P^t)_{1,1}=\frac{\beta}{\alpha+\beta}+\frac{\alpha}{\alpha+\beta}(1-\alpha-\beta)^t=\frac{1}{3}+\frac{2}{3}(-1)^t2^{-t}.$$
+        This is the probability that the grasshopper is back where he started after $t$ jumps.
+        \item 
+        \begin{enumerate}
+            \item A die is ‘tampered with’ so that each time it is rolled, the score it shows cannot be the same as it was in the roll before, but all the other five scores are equally likely (with probability $1/5$ each.) Suppose the first roll is a $6$. For each positive integer $t$, find the probability that the $t$th roll is a $6$, and find the probability that the $t$th roll is a $1$.
+            \item Another die is ‘tampered with’ so that each time it is rolled, the score it shows cannot be one more than it was in the roll before (and also it cannot be a $1$, if the score in the roll before was a $6$), but all the other five scores are equally likely (with probability $1/5$ each). Suppose again that the first roll is a $6$. For each positive integer $t$, find the probability that the $t$th roll is a $6$.         
+        \end{enumerate}
+        Solution:
+        \begin{enumerate}
+            \item It’s possible to model this as a $6$-state Markov chain $$(X_0, X_1, X_2, \ldots),$$
+            where $X_t$ is the number shown on the die after $t+1$ rolls (so $X_0 = 6$). But to save on calculations, instead we model this process as a $2$-state Markov chain $(Y_0, Y_1, Y_2,\ldots)$ with two states: state $y$ (for ‘yes’), when the die shows a $6$, and state $n$ (for ‘no’), when the die does not show a $6$. Then the transition probabilities are $p_{y,y} = 0, p_{y,n} = 1, p_{n,n} = 4/5, p_{n,y} = 1/5$. This is the same situation as in the $2$-state Markov chain in the lectures, with $\alpha = 1\ \text{and} \beta = 1/5$. Using the formula from the lectures, we get:
+            $$p^{(t)}_{y,y}=(P^t)_{y,y}=\frac{\beta}{\alpha+\beta}+\frac{\alpha}{\alpha+\beta}(1-\alpha-\beta)^t=\frac{1}{6}+\frac{5}{6}(-1)^t5^{-t}.$$
+            We are told that the first roll is a $6$, i.e. that $Y_0 = y$, and we are asked to find the probability that after $(t − 1)$ further rolls, the die shows $6$ again. In other words, we are asked for $p^{(t−1)}_{y,y}$ . So the answer is $$\frac{1}{6}+\frac{5}{6}(-1)^{t-1}5^{-(t-1)}.$$
+            We are also asked to find the probability that the $t$th roll is a $1$. Notice that the probability that the $t$th roll is a $1$ is the same as the probability that the $t$th roll is a $j$, for $j = 2, 3, 4, 5$. Therefore, the probability that the $t$th roll is a $1$ is ($1$ − the probability it is a $6$)/$5$, which is $$\frac{1}{5}\left(1-\left(\frac{1}{6}+\frac{5}{6}(-1)^{t-1}5^{-(t-1)}\right)\right)=\frac{1}{6}+\frac{1}{6}(-1)^t5^{-(t-1)}.$$
+            \item We can model this as a $6$-state Markov chain $(Z_0, Z_1, Z_2,\ldots)$, where $Z_t$ is the number shown on the die after $t + 1$ rolls. Now we do something very clever: we define another Markov chain $(W_0, W_1, W_2,\ldots)$ based on the Markov chain $(X_0, X_1, X_2,\ldots)$ for the die in part (a), by $W_t \equiv X_t + t$ (modulo $6$). (The state-space is $\{1, 2, 3, 4, 5, 6\}$.) Notice that the Markov chain $(W_0, W_1, W_2, \ldots)$ is an exact copy of the Markov chain $(Z_0, Z_1, Z_2,\ldots)$! (If $W_t = a$, then $W_{t+1}$ cannot equal $a + 1$(and it cannot equal $1$, if $a = 6$), but $W_{t+1}$ is equal to each of the other five possible scores, with probability $1/5$ each.)\par
+            It follows that
+            \begin{equation}
+                Pr(Z_{t-1}=6\, | \, Z_0=6) = Pr(W_{t-1} = 6\, |\, W_0=6) = Pr(X_{t-1}+t-1\equiv 6\, |\, X_0 = 6).
+            \end{equation}
+            (Here, all the congruences are modulo $6$.) If $t \equiv 1 (\mod{6})$, then the right-hand side of (1) is simply $$Pr(X_{t-1} = 6\, |\, X_0=6),$$ which is $$\frac{1}{6}+\frac{5}{6}(-1)^{t-1}5^{-(t-1)},$$ by part (a). Now notice that, by symmetry, for any $t \in \mathbb{N}$, we have
+            \begin{align*}
+                Pr(X_{t−1} = 1\, |\, X_0 = 6) &= Pr(X_{t−1} = 2\,|\, X_0 = 6) = Pr(X_{t−1} = 3\,|\,X_0 = 6)\\
+                &=  Pr(X_{t−1} = 4\, |\, X_0 = 6) = Pr(X_{t−1} = 5\, |\, X_0 = 6).
+            \end{align*}
+            Since these probabilities must sum up to $1 − Pr(X_{t−1} = 6\, |\, X_0 = 6)$, they are each equal to $$\frac{1 − Pr(X_{t−1} = 6\, |\, X_0 = 6)}{5}=\frac{1}{6}+\frac{1}{6}(-1)^t5^{-(t-1)}.$$
+            If $t$ is not congruent to $1$ modulo $6$, then the right-hand side of (1) is equal to $Pr(X_{t−1} = i\, |\, X_0 = 6)$ (for some $i \in \{1, 2, 3, 4, 5\}$), so it is equal to $$\frac{1 − Pr(X_{t−1} = 6\, |\, X_0 = 6)}{5}=\frac{1}{6}+\frac{1}{6}(-1)^t5^{-(t-1)}.$$ So the answer to the question is $$\frac{1}{6}+\frac{5}{6}(-1)^{t-1}5^{-(t-1)},$$ if $t\equiv 1(\mod{6})$, and $$\frac{1}{6}+\frac{1}{6}(-1)^t5^{-(t-1)},$$ otherwise.
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

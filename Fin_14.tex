@@ -1,0 +1,170 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+\usepackage{xcolor}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 9 - Solutions
+    \end{center}
+    %
+    \textbf{Exercise 1.} Consider two investments, both of which will result in having $\$1,000,000$ at time $T = 0.5$ (6 months). Note that the costs and the payoffs have to be in the same currency, in order to be comparable. Therefore, we will have both costs in $\pounds$ and both of the payoffs in $\$$.
+    \begin{enumerate}[(A)]
+        \item Enter a long position in the forward contract to buy $\$ 1,000,000$ at time $T$ and invest $\pounds\, F e^{−r_\pounds T}$ in a UK bank at time $0$.
+        \item Invest $\$\, e^{-r_{\$}T}\, 1,000,000$ in a US-bank at time $0$ until time $T$. Purchase this amount of money ($\$\, e^{-r_{\$}T}\, 1,000,000$) at time $0$ (paying in $\pounds$) using the exchange rate $(0.67\pounds /\$$).        
+    \end{enumerate}
+    By the Law of One Price the cost of the two investments (in $\pounds$) must be the same, since they have the same payoff $(\$1,000,000)$ at time $T$. Thus
+    %
+    \begin{center}
+        \begin{tabular}{llcc}
+             & Cost of investment A in \pounds & = & Cost of investment B in \pounds\\
+             $\Rightarrow$ & $0+ Fe^{-r_{\$}T}$ & = & $e^{-r_{\$}T}\, 1,000,000\cdot 0.67$,\\
+        \end{tabular}
+    \end{center}
+    so 
+    $$
+    F = 670,000\, e^(0.01-0.02)\cdot 0.5 = 666,658.36\ .
+    $$
+    Thus, the fair value for the forward price $F$ is $\pounds 666,658.36$.
+    %
+    \textbf{Exercise* 2.}
+    \begin{enumerate}[(a)]
+        \item In order to determine how much investor A’s investment is worth at time $T$ we distinguish two cases.
+        \begin{enumerate}[(i)]
+            \item Suppose that $S(T) \geq 17$. Then the put option is worth $17 − S(T)$ pounds, because she can exercise the put option and sell the stock for $17$ pounds, after buying it from the market for its current value of $S(T)$ pounds, thus making an instant profit of $17 − S(T)$ pounds. At the same time, investor A’s stock is of course worth $S(T)$ pounds. Thus her investment is worth $17 − S(T) + S(T) = 17$ pounds.
+            \item Suppose that $S(T) > 17$. Then investor A’s put option is worthless, as she would not want to sell stock that is worth more (namely $S(T)$ pounds) for less (namely $17$ pounds). However, her stock is worth $S(T)$. Thus her investment is worth $S(T)$ pounds.
+        \end{enumerate}
+        Thus,
+        $$
+        \text{at time $T$ the payoff of investor A’s investment in pounds is}\ 
+        \begin{cases}
+            17 & \text{if}\ S(T) \leq 17;\\
+            S(T) & \text{if}\ S(T)>17.
+        \end{cases}
+        $$
+        \item In order to determine how much investor B’s investment is worth at time $T$ we again distinguish the following two cases.
+        \begin{enumerate}[(i)]
+            \item Suppose that $S(T) \geq 17$. Then investor B’s call option is worthless, because he would not want to buy the stock that is worth less (namely $S(T)$ pounds) for more (namely $17$ pounds). However, his deposit of $16.5$ pounds will now be worth $16.5\, e^{rT}=16.5\,e^{0.03}=17$pounds. Thus his investment is worth $17$ pounds.
+            \item Suppose that $S(T) > 17$. Then investor B’s call option is worth $S(T)−17$ pounds, since he can exercise the call option and buy the stock for $17$ pounds and sell it off immediately in the market for $S(T)$ pounds, thus making an instant profit of $S(T) − 17$ pounds. At the same time, investor B’s deposit is worth $16.5\, e^{0.03}=17$ pounds as before. Thus his investment is worth $S(T) − 17 + 17 = S(T)$ pounds.
+        \end{enumerate}
+        Thus,
+        $$
+        \text{at time $T$ the payoff of investor B’s investment in pounds is}\ 
+        \begin{cases}
+            17 & \text{if}\ S(T) \leq 17;\\
+            S(T) & \text{if}\ S(T)>17.
+        \end{cases}
+        $$
+        \item First we observe that the cost of investor A’s investment is $20 + 3 = 23$ pounds,\\
+        while the cost of investor B’s investment is $C + 16.5$. Using (a) and (b) we see that the payoff of both investor A’s and investor B’s investment is the same at time $T$, so the present value of the payoffs of their investments also coincide. Assuming that there are no arbitrage opportunities the Law of One Price now implies that the two costs have to be equal, giving
+        $$
+        23 = C+16.5 \quad \Rightarrow \quad c+\pounds 6.5,
+        $$
+    \end{enumerate}
+    %
+    \textbf{Exercise* 3.}
+    \begin{enumerate}[(a)]
+        \item The gain function of the strategy $(x_1, x_2, x_3)$ is given by
+        $$
+        \text{Gain}
+        =
+        \begin{cases}
+            \frac{2}{3}x_1-x_2-x_3, & \text{if the cutcome $j = 1$}\\
+            -x_1+\frac{6}{2}x_2-x_3, & \text{if the cutcome $j = 2$}\\
+            -x_1-x_2+\frac{10}{1}x_3, & \text{if the cutcome $j = 3$}.
+        \end{cases}
+        $$
+        \item The strategy $(x_1, x_2, x_3)$ is a winning strategy (yielding an Arbitrage) when the gain function is always positive, no matter what the outcome $j$ of the experiment is. This implies that,
+        \begin{align}
+            \frac{2}{3}x_1-x_2-x_3 & > 0\\
+            -x_1+\frac{6}{2}x_2-x_3 & > 0\\
+            -x_1-x_2+\frac{10}{1}x_3 & > 0
+        \end{align}
+        Then by rearranging the inequalities (\textcolor{red}{1})-(\textcolor{red}{3}), we get that
+        %
+        \begin{equation}
+            \frac{x_1+x_2}{10}<x_3<\text{min} \left\{\frac{2x_1-3x_2}{3}, -x_1+3x_2\right\}.
+        \end{equation}
+        %
+        Therefore we may conclude that such an $x_3$ will exist if and only if the above interval exists, which is equivalent to
+        $$
+        \frac{x_1+x_2}{10}<\frac{2x_1-3x_2}{3}
+        $$
+        and
+        $$
+        \frac{x_1+x_2}{10}<-x_1+3x_2\, .
+        $$
+        By rearranging the above two inequalities, we get
+        %
+        \begin{equation}
+            \frac{33}{17}x_2<x_1<\frac{29}{11}x_2 \ \text{for all $x_2>0$}.
+        \end{equation}
+        %
+        Finally, the strategies $(x_1, x_2, x_3)$ satisfying (\textcolor{red}{4})–(\textcolor{red}{5}) are winning strategies producing a risk-free profit.\\
+        \textsl{Remark: This is just one of the possible solution to part (b)}.
+        \item For $(x_1, x_2, x_3) = (220, 100, 50)$, we see that:
+        $$
+        \text{Gain}
+        =
+        \begin{cases}
+            \frac{2}{3}220-100-50=-3.33, & \text{if the outcome $j = 1$},\\
+            -220+\frac{6}{2}100-50=30, & \text{if the outcome $j = 2$},\\
+            -220-100+\frac{10}{1}50 = 180, & \text{if the outcome $j = 3$}.
+        \end{cases}
+        $$
+        where the fact that you can make a loss if the outcome is $j = 1$ implies that you cannot make a risk-free profit following this strategy.
+        \item For $(x_1, x_2, x_3) = (220, 100, 40)$, we see that:
+        $$
+        \text{Gain}
+        =
+        \begin{cases}
+            \frac{2}{3}220-100-40 = 7.33, & \text{if the outcome $j =1$},\\
+            -220+\frac{6}{2}100-40 = 40, & \text{if the outcome $j =2$},\\
+            -220-100+\frac{10}{1}40=80, & \text{if the outcome $j =3$}.
+        \end{cases}
+        $$
+        which yields that we have a positive gain for all outcomes and the betting strategy $(x_1, x_2,$ $x_3) = (220, 100, 40)$ gives a guaranteed risk-free profit.
+    \end{enumerate}
+    \textsl{Remark: The parts (c) and (d) can be checked also through the inequalities (\textcolor{red}{4})–(\textcolor{red}{5}) satisfied by $(x_1, x_2, x_3)$ in the case when the strategy provides a guaranteed risk-free profit.}\par 
+    %
+    \textbf{Exercise 4.} The return is given by
+    $$
+    x_1r_1(j)+x_2r_2(j).
+    $$
+    Using $x_1 = 3$ and $x_2 = 1$ we see that:\\
+    - for $j=1$ the return is
+    $$
+    x_1r_1(1) + x_2r_2(1) = 3 − 2 = 1 > 0, 
+    $$
+    - for $j = 2$ the return is
+    $$
+    x_1r_1(2) + x_2r_2(2) = 3 − 1 = 2 > 0,
+    $$
+    - and for $j = 3$ the return is
+    $$
+    x_1r_1(3) + x_2r_2(3) = −3 + 4 = 1 > 0.
+    $$
+    Thus the return is positive for all outcomes and the betting strategy $x = (3, 1)$ gives a guaranteed risk-free profit.
+\end{document}

@@ -1,0 +1,58 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+
+\begin{document}
+\begin{center}
+	\LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+	Coursework 3 — Solutions
+\end{center}
+
+\textbf{Exercise 1.} Let $Y$ be the time in hours from ingestion of the food to the appearance of the first symptoms. We are told that $Y$ is lognormally distributed with parameters $\mu = 0.83$ and $\sigma^2 = (0.39)^2$. Thus $\log Y\sim N(\mu, \sigma^2)$.
+\begin{enumerate}[(a)]
+	\item The desired probability is $P(Y \leq 2)$. Now $$\mathbb{P}(Y\leq 2) = \mathbb{P}(\log Y\leq \log(2))=\mathbb{P}\left(\frac{\log Y-\mu}{\sigma}\leq \frac{\log(2)-\mu}{\sigma}\right)$$ $$=\Phi\left(\frac{\log(2)-\mu}{\sigma}\right)=\Phi(-0.35)=1-\Phi(0.35)=1-0.6368=0.3632\,.$$ Thus, the probability that you start feeling ill within $2$ hours is $36\%$.
+	\item Suppose that you have been symptom-free for $t$ hours after dinner. If the food was contaminated the probability of this event is $\mathbb{P}(Y\geq t)$. Thus, to answer the question we need to find $t$ such that $\mathbb{P}(Y \geq t) = 0.01$, or $\mathbb{P}(Y\leq t) = 0.99$. Now, using the tables we find that $$0.99 = \mathbb{P}(Y\leq t) = \mathbb{P}\left(\frac{\log Y-\mu}{\sigma}\leq \frac{\log t-\mu}{\sigma}\right) = \Phi\left(\frac{\log t-\mu}{\sigma}\right),$$ implies that $$\frac{\log t-\mu}{\sigma} = 2.33.$$ Thus $$t = exp(2.33\sigma+\mu)=5.69,$$ that is, you have to wait $5.7$ hours in order to be $99\%$ sure that the food was not contaminated.
+\end{enumerate}
+
+\textbf{Exercise 2.} Let $X$ have a standard Cauchy distribution with $$fX(x) = \frac{1}{\pi}\frac{1}{1+x^2},$$ and let $g(x)=1/x$, such that $g\,:\,\mathbb{R}\setminus\{0\}\to\mathbb{R}\setminus\{0\}$. We first observe that $g$ is a continuous function. Then, by calculating $$g^\prime(x) = -\frac{1}{x^2}<0,$$ we conclude that $g$ is also a strictly monotone (decreasing) function. We need show that $Y = g(X)$ also has a standard Cauchy distribution. Observing that $g^{-1}(y) = \frac{1}{y}$ exists for all $y\neq0$, the transformation formula tells is that the pdf of $Y$ is $$f_Y(y)=f_X(g^{-1}(y))\left|\frac{d}{dy}\left(\frac{1}{y}\right)\right|=\frac{1}{\pi}\frac{1}{1+\frac{1}{y^2}}\frac{1}{y^2}=\frac{1}{\pi}\frac{1}{1+y^2}.$$ Thus $Y$ also has a standard Cauchy distribution.
+
+\textbf{Exercise 3.}
+\begin{enumerate}[(a)]
+	\item Observe that
+	\begin{align*}
+		\mathbb{E}(Y)&=\int_{-\infty}^\infty e^x\frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)\,dx\\
+		&=\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{x^2-2\mu x+\mu^2}{2\sigma^2}+x\right)\,dx\\
+		&=\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{x^2-(2\mu+2\sigma^2)x+\mu^2}{2\sigma^2}\right)\,dx\\
+		&=\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(x-(\mu+\sigma^2))^2}{2\sigma^2}+\frac{(\mu+\sigma^2)^2-\mu^2}{2\sigma^2}\right)\,dx\\
+		&=exp\left(\mu+\frac{\sigma^2}{2}\right)\underbrace{\int_{-\infty}^\infty \frac{1}{\sqrt{2\pi}\sigma}exp\left(-\frac{(x-(\mu+\sigma^2))^2}{2\sigma^2}\right)\,dx}_{(*)}\\
+		&=exp\left(\mu+\frac{\sigma^2}{2}\right)
+	\end{align*}
+Note that the integral $(*)$ above is equal to $1$, since the integrand is the probability distribution function of a $N(\mu+\sigma^2,\sigma^2)$-distributed random variable.\par
+In order to calculate the variance of $Y$ , note that $Y^2 = e^{2X}$, where $X\sim N(\mu,\sigma)$. Thus, $Y^2\sim LogNormal(2\mu,(2\sigma)^2)$, and, using the above calculation, we see that $$\mathbb{V}ar(Y)=\mathbb{E}(Y^2)-\mathbb{E}(Y)^2 = exp(2\mu+2\sigma^2)-(exp(\mu+\sigma^2/2))^2$$ $$=exp(2\mu+2\sigma^2)-exp(2\mu+\sigma^2)=exp(2\mu+\sigma^2)\left[exp(\sigma^2)-1\right].$$
+
+	\item  First we determine $\mu$ and $\sigma$. Note that $$\frac{\mathbb{V}ar(Y)}{\mathbb{E}(Y)^2}=\frac{exp(2\mu+\sigma^2)(exp(\sigma^2)-1)}{exp(2\mu+\sigma^2)}=exp(\sigma^2)-1\, ,$$ so $$\sigma=\sqrt{\log\left(1+\frac{\mathbb{V}ar(Y)}{\mathbb{E}(Y)^2}\right)}=0.6647\, ,$$ and $$\mu = \log\mathbb{E}(Y)-\sigma^2/2=-0.7317\,.$$ Now in order to find $y>0$ such that $\mathbb{P}(Y\leq y)=0.05$ note that $$0.05 = \mathbb{P}(Y\leq y) = \mathbb{P}\left(\frac{\log Y-\mu}{\sigma}\leq \frac{\log y-\mu}{\sigma}\right)=\Phi\left(\frac{\log y-\mu}{\sigma}\right)\,.$$ Using the table we find that $$\Phi(-1.654) = 1-\Phi(1.645)=1-0.95=0.05\,.$$ Thus $(\log Y-\mu)/\sigma = -1.645$, so $$y = exp(\mu-1.645\sigma)=0.1612\, .$$
+\end{enumerate}
+
+
+\end{document}

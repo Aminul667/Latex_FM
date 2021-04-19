@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsfonts,amsmath,amssymb,suetterl}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
+\usepackage{enumerate}
+
+\DeclareUnicodeCharacter{2212}{-}
+
+\usepackage{mathrsfs}
+
+\usepackage[nodisplayskipstretch]{setspace}
+\setstretch{1.5}
+
+
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\footrulewidth}{0pt}
+\parindent 0ex
+\setlength{\parskip}{1em}
+
+\begin{document}
+    \begin{center}
+        \LARGE\textbf{MTH6121 Introduction to Mathematical Finance}\\
+        Coursework 5
+    \end{center}
+    %
+    \textbf{Exercise* 1.}
+    \begin{enumerate}[(a)]
+        \item Since
+        $$\alpha W(s) + \beta (W(t) − W(s)) = (\alpha − \beta)W(s) + \beta W(t),$$
+        we have
+        $$W(s) + W(t) = \alpha W(s) + \beta (W(t) − W(s)),$$
+        provided that $\alpha$ and $\beta$ satisfy the following system of linear equations
+        \begin{align*}
+            \alpha - \beta &= 1\\
+            \beta &= 1
+        \end{align*}
+        Thus, the desired values of the constants are $\beta = 1\ \text{and} \alpha = 2$.
+        \item By (a) we know that
+        $$W(s) + W(t) = 2W(s) + (W(t) − W(s)).$$
+        Moreover,
+        $$2W(s) \sim \mathcal{N} (0, 4s)$$
+        and
+        $$W(t) − W(s) \sim \mathcal{N} (0, t − s).$$
+        But since $W(s)\ \text{and}\ W(t) − W(s)$ are independent, the above implies that
+        $$W(s) + W(t) \sim \mathcal{N} (0, t + 3s).$$
+    \end{enumerate}
+    %
+    \textbf{Exercise 2.} Let $Y (t)$ be Brownian motion with drift having drift parameter $\mu = 0.06$ and volatility parameter $\sigma = 0.10$.
+    \begin{enumerate}[(a)]
+        \item We have
+        \begin{align*}
+            \mathbb{P}(Y (5) < 0) &= \mathbb{P}(5\mu + \sigma W(5) < 0)=\mathbb{P}\left(W(5)<-\frac{5\mu}{\sigma}\right)=\mathbb{P}\left(\frac{W(5)}{\sqrt{5}}<-\frac{5\mu}{\sqrt{5}\sigma}\right)\\
+            &= \Phi\left(-\frac{5\mu}{\sqrt{5}\sigma}\right)=1-\Phi\left(\frac{\sqrt{5}\mu}{\sigma}\right)=1-\Phi(1.34) = 1-0.0901
+        \end{align*}
+        Thus the probability that $Y (5) < 0$ is $0.09$.
+        \item We have
+        $$\mathbb{E}(Y (5)) = \mathbb{E}(5\mu + \sigma W(5)) = 5\mu = 0.3 .$$
+        \item  Note that
+        $$\mathbb{V}ar(Y (5)) = \mathbb{V}ar(5\mu + \sigma W(5)) = \sigma^2\mathbb{V}ar(W(5)) = 5\sigma^2 = 0.05 .$$
+    \end{enumerate}
+    %
+    \textbf{Exercise 3.} Let $Y (t)$ be Brownian motion with drift having drift parameter $\mu = 0.1$ and volatility parameter $\sigma = 0.5$.
+    \begin{enumerate}[(a)]
+        \item We have
+        $$\mathbb{E}(Y (3) + Y (10)) = \mathbb{E}(Y (3)) + \mathbb{E}(Y (10)) = 3\mu + 10\mu = 13\mu = 1.3 .$$
+        \item Note that if $X_1$ and $X_2$ are random variables and $a, b, c$, and $d$ are real constants, then
+        $$Cov(a + bX_1, c + dX_2) = bd Cov(X_1, X_2).$$
+        This follows from a short calculation using the definition of covariance. Thus
+        \begin{align*}
+            Cov(Y (3), Y (10)) &= Cov(3\mu + \sigma W(3), 10\mu + \sigma W(10))\\
+            &= \sigma^2 Cov(W(3), W(10))\\
+            &= \sigma^2 min(3, 10) \quad \quad \text{(Prove why this is true)}\\
+            &= 3\sigma^2\\
+            &= 0.75.
+        \end{align*}
+        \item Using (b) we find
+        \begin{align*}
+            \mathbb{V}ar(Y (3) + Y (10)) &= \mathbb{V}ar(Y (3)) + \mathbb{V}ar(Y (10)) + 2Cov(Y (3), Y (10))\\
+            &= \sigma^2\mathbb{V}ar(W(3)) + \sigma^2\mathbb{V}ar(W(10))+2Cov(Y (3), Y (10))\\
+            &= 3\sigma^2+10\sigma^2+6\sigma^2\\
+            &= 19\sigma^2\\
+            &= 4.75
+        \end{align*}
+    \end{enumerate}
+    %
+    \textbf{Exercise* 4.} Let $S(t)$ denote the price of the stock with $t$ measured in years. We know that
+    $$S(t) = S exp(\mu t + \sigma W(t)),$$
+    where $W(t)$ denotes the Wiener process, $S$ is the starting parameter, $\mu = 1.4\ \text{and}\ \sigma = 2.9$.
+    \begin{enumerate}[(a)]
+        \item Since a week has $7$ days and a year has $365$ days, we need to find the probability that $S(21/365) \leq \frac{2}{3}S(0)$. Now
+        $$\mathbb{P}\left(S(21/365) \leq \frac{2}{3}S(0)\right) = \mathbb{P}\left(\log\frac{S(21/365)}{S(0)}\leq \log\frac{2}{3}\right).$$
+        But
+        $$\log\frac{S(21/365)}{S(0)}\sim \mathcal{N}\left(\frac{21}{365}\mu,\frac{21}{365}\sigma^2\right) \quad \quad \text{(Explain this in detail)}$$
+        so
+        \begin{align*}
+            \mathbb{P}\left(S(21/365)\leq \frac{2}{3}S(0)\right) &= \mathbb{P}\left(\log\frac{S(21/365)}{S(0)}\leq \log\frac{2}{3}\right)\\
+            &= \mathbb{P}\left(\frac{\log \frac{S(21/365)}{S(0)}-\frac{21}{365}\mu}{\sqrt{\frac{21}{365}}\sigma}\leq \frac{\log\frac{2}{3}-\frac{21}{365}\mu}{\sqrt{\frac{21}{365}}\sigma}\right)\\
+            &= \Phi \left(\frac{\log\frac{2}{3}-\frac{21}{365}\mu}{\sqrt{\frac{21}{365}}\sigma}\right)\\
+            &= \Phi(-0.70) = 1-\Phi(0.70) = 1- 0.7580 = 0.2420
+        \end{align*}
+        Thus, the probability that the stock has lost at least a third of its value after three weeks is $24\%$.
+        \item The desired probability is $P(S(35/365) \leq S(21/365))$. Now
+        $$P(S(35/365) \leq S(21/365)) = \mathbb{P}\left(\log \frac{S(35/365)}{S(21/365)}\leq 0\right).$$
+        But
+        $$\log \frac{S(35/365)}{S(21/365)}\sim \mathcal{N}\left(\frac{14}{365}\mu,\frac{14}{365}\sigma^2\right).\ \text{(Explain this in detail – Use the same logic as above)}$$
+        Thus
+        \begin{align*}
+            P(S(35/365) \leq S(21/365)) &= P\left(\log\frac{S(35/365)}{S(21/365)}\leq 0\right)\\
+            &= P\left(\frac{\log\frac{S(35/365)}{S(21/365)}-\frac{14}{365}\mu}{\sqrt{\frac{14}{365}}\sigma}\leq -\frac{\frac{14}{365}\mu}{\sqrt{\frac{14}{365}}\sigma}\right)\\
+            &= \Phi\left(-\sqrt{\frac{14}{365}}\frac{\mu}{\sigma}\right)\\
+            &= \Phi(-0.09)\\
+            &= 1 - \Phi(0.09) = 1- 0.5359 = 0.4641
+        \end{align*}
+        Thus, the probability that the price at the end of the fifth week is lower than at the end of the third week is $46\%$.
+    \end{enumerate}
+\end{document}
